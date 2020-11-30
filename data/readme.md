@@ -1,4 +1,4 @@
-## Données à charger/mettre à jour dans ce dossier
+## Données à charger/actualiser dans ce dossier
 
 * Les données bibliographiques de votre institution depuis les bases HAL, PUBMED, LENS etc. <br />
 
@@ -10,7 +10,7 @@ ajouter repo
 
 
 <br /><br />
-## Données à charger/mettre à jour dans le dossier `APC_tracking` charger 
+## Données à charger/actualiser dans le dossier `APC_tracking` charger 
 
 * le fichier openapc_dois.csv à récupérer en ligne
 https://github.com/OpenAPC/openapc-de/blob/master/data/apc_de.csv
