@@ -1,21 +1,29 @@
-## Ajouter à la racine
+#### Données à charger/mettre à jour dans ce dossier
 
-- vos extractions HAL, PUBMED, LENS etc. <br />
-- le dump en csv du barometre français de la science ouverte <br />
+* Les données bibliographiques de votre institution depuis les bases HAL, PUBMED, LENS etc. <br />
+
+* le dump en .csv du barometre français de la science ouverte <br />
 https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/
-- les issns des journaux suspects
---> donner lien
 
-## dans APC_tracking
-- openapc_dois.csv
+* les issns des journaux suspects
+ajouter repo
+
+
+
+#### Données à charger/mettre à jour dans le dossier `APC_tracking` charger 
+
+* le fichier openapc_dois.csv à récupérer en ligne
 https://github.com/OpenAPC/openapc-de/blob/master/data/apc_de.csv
-- doaj_apc_journals.csv
+
+* doaj_apc_journals.csv
 https://doaj.org/docs/public-data-dump/
-- openapc_journals.csv
+`2020-11-30 utilisation du csv disponible à doaj.org/csv`
+
+* openapc_journals.csv
+fichier produit à partir des données openapc : voire ajouter repo
 
 
-
-## Requêtes pour l'UVSQ
+#### Requêtes utilisées pour extraire des bases bibliographiques les données
 **WOS**
 
 `OG=(Universite de Versailles Saint-Quentin-En-Yvelines)

@@ -7,7 +7,7 @@ Maxence Larrieu -- 2020-11-30<br />
 
 Reprise du code du baromètre de la science ouverte de l'Université de Lorraine afin de réaliser celui de l'UVSQ. Code original [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) , merci ! 
 
-### Table of Contents
+### Table des matières
 * [Intégrer les publications de HAL sans DOI](#intégrer-les-publications-de-HAL-sans-DOI) <br/>
 * [Pister les APC](#pister-les-APC) <br/>
 * [Métadonnées extraites]() <br/>
@@ -26,10 +26,10 @@ Deux dictionnaires ont été réalisés afin d'aligner les types de document de 
 voir `data/match_referentials.json`
 
 ### Pister les APC
-Le but est de savoir si la publication a nécessitée des APC( Article Processing Charges). <br/ > A moins que la publication soit référencée dans openapc, il n'est  pas possible de répondre avec certitude à cette question. Du fait des accords transformants un article peut en effet être publié dans une revue qui nécessite des APC sans que les auteurs en ait payé -- accord "publish & read" entre l'institution et l'éditeur. De plus, une revue peut changer de modèle économique ce qui limite la détection des APCs. Les informations recueillies sont donc données à titre indicatif.
+Le but est de savoir si la publication a nécessitée des APC( Article Processing Charges). <br /> Du fait des accords transformants (publish & read), des changements possibles de modèle économique chez les revues et enfin des éventuels éxonérations (waivers) il n'est pas possible de répondre avec certitude à cette question. Les informations sont donc fournis à titre indicatif
 
 
-L'algorithme réalisé à quatre étapes : 
+L'algorithme réalisé est fait de quatre étapes : 
 
 + Le DOI est-il dans [openapc](https://github.com/OpenAPC/openapc-de) ? 
     + oui, renseigner `doi_in_openapc` et extraire le prix
@@ -42,6 +42,7 @@ L'algorithme réalisé à quatre étapes :
 			+ non, la revue (ISSN) est elle dans le [DOAJ](https://doaj.org/) et des informations sont elles présente ?
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
 	
+
 
 
 ### Journaux suspects
