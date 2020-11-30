@@ -29,7 +29,8 @@ voir `data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est de savoir si la publication a nécessitée des APC( Article Processing Charges). <br /> Du fait des accords transformants (publish & read), des changements possibles de modèle économique chez les revues et enfin des éventuels éxonérations (*waivers*) il n'est pas possible de répondre avec certitude à cette question. Les informations sont donc données à titre indicatif. Ces informations peuvent ensuite servir à pister les APC dans le cadre du projet openapc.
+Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> Du fait au moins des "accords transformants" (publish & read), des changements possibles des modèles économique des revues et enfin des possibles éxonérations (*waivers*) il reste très difficle de répondre à cette question. Les informations sont donc données à titre indicatifs.
+. Les informations sont donc données à titre indicatif. Le but est d'aider 
 
 
 L'algorithme réalisé est fait de quatre étapes : 

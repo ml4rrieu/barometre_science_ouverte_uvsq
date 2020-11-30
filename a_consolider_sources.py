@@ -145,28 +145,3 @@ halonly['duplicated'] = halonly.duplicated('title', keep = False)
 halonly_doubl = halonly[ halonly['duplicated']].copy()
 halonly_doubl.sort_values("title", inplace = True)
 halonly_doubl.to_csv("./misc/hal_verif_doublons_titres.csv", index= False, encoding = 'utf8')
-
-
-
-
-
-
-
-
-#___NOT NECESSARY____Venn diagramm
-'''
-pubset = set(pubmed["doi"].values)
-scopusset = set(scopus["doi"].values)
-print("pmonly", len(pubset - scopusset) )
-print("scopus only", len( scopusset - pubset) )
-print("pmInter	scopus", len(pubset.intersection(scopusset)))
-'''
-
-
-'''
-dois.reset_index(drop = True, inplace = True) # re index
-print("dois no duplicates", len(dois))
-print(dois.head())
-dois.to_csv("./data/valid_dois.csv", index = False, encoding = 'utf8')
-
-'''
