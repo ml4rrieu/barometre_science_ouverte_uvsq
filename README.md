@@ -6,7 +6,6 @@ En construction -- 2020-12-01<br />
 Reprise du code du baromètre de la science ouverte de l'Université de Lorraine afin de réaliser celui de l'UVSQ. Code original [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) , merci ! 
 
 <br /><br />
-
 ### Table des matières
 * [Intégrer les publications de HAL sans DOI](#intégrer-les-publications-de-HAL-sans-DOI) <br/>
 * [Pister les APC](#pister-les-APC) <br/>
@@ -17,15 +16,17 @@ Reprise du code du baromètre de la science ouverte de l'Université de Lorraine
 ### Intégrer les publications de HAL sans DOI
 Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines disciplinaires.
 
-**Détection de l'accès ouvert **
+**Détection de l'accès ouvert**
+
 Une publication dans HAL sans DOI est considérée en accès ouvert si l'une conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
 - la métadonnées `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
 
 **Alignement des référentiels**
+
 Deux dictionnaires ont été réalisés afin d'aligner les types de document de HAL avec ceux de Crossref et les domaines disciplinaires de HAL avec ceux du baromètre français de la science ovuerte.
 voir `data/match_referentials.json`
-
+<br />
 
 ### Pister les APC
 Le but est de savoir si la publication a nécessitée des APC( Article Processing Charges). <br /> Du fait des accords transformants (publish & read), des changements possibles de modèle économique chez les revues et enfin des éventuels éxonérations (*waivers*) il n'est pas possible de répondre avec certitude à cette question. Les informations sont donc données à titre indicatif. Ces informations peuvent ensuite servir à pister les APC dans le cadre du projet openapc.
@@ -43,10 +44,10 @@ L'algorithme réalisé est fait de quatre étapes :
 			+ oui, renseigner `journal_is_hybrid`
 			+ non, la revue (ISSN) est elle dans le [DOAJ](https://doaj.org/) et des informations sont elles présente ?
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
-	
+<br />
 
 ### Schéma de données
-**en cours de réalisation**
+**en cours ...**
 | column             | description (if needed)                                                                       | source                   |
 |--------------------|-----------------------------------------------------------------------------------------------|--------------------------|
 | doi                |                                                                                               |                          |
@@ -74,9 +75,10 @@ L'algorithme réalisé est fait de quatre étapes :
 | licence            | licence finded in unpaywall                                                                   | unpaywall                |
 | apc_tracking       | APC information (doi_in_openapc, journal_in_openapc, journal_is_hybrid, apc_journals_in_doaj) | openapc, doaj, unpaywall |
 | journal_is_in_doaj | Is this resource published in a DOAJ-indexed journal                                          | unpaywall                |
+| journal_is_oa      | Is this resource published in a completely OA journal                                         | unpaywall                |
+| is_paratext        | Is the item an ancillary part of a journal (column disappear if everything is False )         | unpaywall                |
 | apc_amount         | Rough approximation of APC cost                                                               | openapc, doaj            |
 | apc_currency       |                                                                                               | openapc, doaj            |
-| journal_is_oa      | Is it an open access journal ?                                                                | unpaywall                |
 | scientific_field   | Scientific field from barometre-science-ouverte and hal                                       | barometre-so, hal        |
 | is_oa              | Is there an OA copy of this ressource                                                         | hal, unpaywall           |
 | oa_type            | Publisher and/repository                                                                      | hal, unpaywall           |
