@@ -1,4 +1,4 @@
-#### Données à charger/mettre à jour dans ce dossier
+## Données à charger/mettre à jour dans ce dossier
 
 * Les données bibliographiques de votre institution depuis les bases HAL, PUBMED, LENS etc. <br />
 
@@ -9,8 +9,8 @@ https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monit
 ajouter repo
 
 
-
-#### Données à charger/mettre à jour dans le dossier `APC_tracking` charger 
+<br /><br />
+## Données à charger/mettre à jour dans le dossier `APC_tracking` charger 
 
 * le fichier openapc_dois.csv à récupérer en ligne
 https://github.com/OpenAPC/openapc-de/blob/master/data/apc_de.csv
@@ -22,8 +22,8 @@ https://doaj.org/docs/public-data-dump/
 * openapc_journals.csv
 fichier produit à partir des données openapc : voire ajouter repo
 
-
-#### Requêtes utilisées pour extraire des bases bibliographiques les données
+<br /><br />
+## Requêtes utilisées pour extraire des bases bibliographiques les données
 **WOS**
 
 `OG=(Universite de Versailles Saint-Quentin-En-Yvelines)
