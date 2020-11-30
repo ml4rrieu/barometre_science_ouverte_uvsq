@@ -3,7 +3,7 @@ En construction -- 2020-12-01<br />
 
 <br /><br />
 
-Reprise du code du baromètre de la science ouverte de l'Université de Lorraine afin de réaliser celui de l'UVSQ. Code original [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) , merci ! 
+<!--repris et adaptaté
 
 <br /><br />
 ### Table des matières
@@ -12,6 +12,9 @@ Reprise du code du baromètre de la science ouverte de l'Université de Lorraine
 * [Schéma de données](#Schéma-de-données) <br/>
 
 
+
+### Présentation -->
+le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine, réalisé en mars 2020 et [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia), (merci !). Deux "modules" ont été ajoutés : le premier permet d'inclure les publications venant de HAL ne possédant pas de DOI et le second apporte des informations sur les frais de publication (APC : Article Processing Charges)
 
 ### Intégrer les publications de HAL sans DOI
 Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines disciplinaires.
@@ -29,7 +32,7 @@ voir `data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> Du fait au moins des "accords transformants" (publish & read), des changements possibles des modèles économique des revues et enfin des possibles éxonérations (*waivers*) il reste très difficle de répondre à cette question. Les informations sont donc données à titre indicatif.
+Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles des modèles économique des revues et enfin les possibles éxonérations (*waivers*) il reste difficle de répondre à cette question. Les informations sont donc données à titre indicatif.
 
 
 L'algorithme réalisé est fait de quatre étapes : 
