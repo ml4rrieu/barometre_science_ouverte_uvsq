@@ -50,7 +50,7 @@ L'algorithme réalisé est fait de quatre étapes :
 <br />
 
 ### Schéma de données
-**en cours ...**
+
 | column             | description (if needed)                                                                       | source                   |
 |--------------------|-----------------------------------------------------------------------------------------------|--------------------------|
 | doi                |                                                                                               |                          |
