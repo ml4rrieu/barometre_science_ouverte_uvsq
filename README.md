@@ -41,11 +41,11 @@ L'algorithme réalisé est fait de quatre étapes :
     + oui, renseigner `doi_in_openapc` et extraire le montant payé
 	+ non, la revue (ISSN) est-elle dans openapc et des frais de publications ont-ils été payés _la même année_ ?
 	
-	    + oui, renseigner `journal_in_openapc`  et extraire le prix moyen sur l'année
+	    + oui, renseigner `journal_in_openapc`  et extraire la moyenne des montants payés sur l'année
 		
 		+ non, le document est-il en open access sur le site de l'éditeur chez une revue hybride ? (utilisation du champs `oa_status` de unpaywall)
 			+ oui, renseigner `journal_is_hybrid`
-			+ non, la revue (ISSN) est elle dans le [DOAJ](https://doaj.org/) et des informations sont elles présente ?
+			+ non, la revue (ISSN) est elle dans le [DOAJ](https://doaj.org/) et des informations sont elles présentes ?
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
 <br />
 
