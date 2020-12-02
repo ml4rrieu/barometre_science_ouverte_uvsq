@@ -90,7 +90,6 @@ L'algorithme réalisé est fait de quatre étapes :
 
 ### Voir aussi
   * le baromètre français de la science ouverte https://ministeresuprecherche.github.io/bso/
-  * sur les évolutions des APC chez qq grands éditeurs https://github.com/lmatthia/publisher-oa-portfolios/blob/master/README.md
-  
+
 
 

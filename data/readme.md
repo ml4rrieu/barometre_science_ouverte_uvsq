@@ -13,20 +13,20 @@ https://github.com/ml4rrieu/open_science_tools/blob/main/questionnable_journals/
 
 
 <br /><br />
-## Données à charger/actualiser dans le dossier `APC_tracking` charger 
+## Données à charger/actualiser dans le dossier `APC_tracking` 
 
-* le fichier openapc_dois.csv à récupérer en ligne
+* `openapc_dois.csv` à récupérer en ligne
 
 https://github.com/OpenAPC/openapc-de/blob/master/data/apc_de.csv
 
-* doaj_apc_journals.csv
+* `doaj_apc_journals.csv` à récupérer en ligne
 
 https://doaj.org/docs/public-data-dump/
 
 `2020-11-30 utilisation du csv disponible sur doaj.org/csv`
 
 
-* openapc_journals.csv
+* `openapc_journals.csv` à récupérer en ligne
 
 https://github.com/ml4rrieu/open_science_tools/blob/main/apc_journal_tables/openapc_journals.csv
 
@@ -58,7 +58,7 @@ limite 2k
 UVSQ & 2015-19 
 ART + COMM if peer reviewed and not popular level
 OUV + COUV  + DOUV  if not popular level
-+ UNDEFINIED
+UNDEFINIED
 
 
 **PUBMED**
