@@ -14,14 +14,14 @@ En construction -- 2020-12-01<br />
 
 
 ### Présentation -->
-le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia), (merci !). Deux "modules" ont été ajoutés : le premier permet d'intégrer les publications venant de HAL ne possédant pas de DOI et le second apporte des informations sur les frais de publication (APC : Article Processing Charges)
+le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux "modules" ont été ajoutés : le premier permet d'intégrer les publications venant de HAL ne possédant pas de DOI et le second apporte des informations sur les frais de publication (APC : Article Processing Charges).
 
 ### Intégrer les publications de HAL sans DOI
 Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines disciplinaires.
 
 **Détection de l'accès ouvert**
 
-Une publication dans HAL sans DOI est considérée en accès ouvert si l'une conditions suivante est remplie
+Une publication dans HAL est considérée en accès ouvert si l'une conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
 - la métadonnées `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
 
