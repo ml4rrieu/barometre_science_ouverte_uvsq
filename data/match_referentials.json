@@ -42,19 +42,19 @@
       "MEMLIC":"other"
    },
    "domain":{
-      "0.sdv":"Biology",
+      "0.sdv":"Biology (fond.)",
       "0.spi":"Engineering",
       "0.scco":"Social sciences",
       "0.qfin":"Social sciences",
       "0.math":"Mathematics",
       "0.nlin":"Mathematics",
-      "0.info":"Computer and informationsciences",
-      "0.stat":"Computer and informationsciences",
+      "0.info":"Computer and \n information sciences",
+      "0.stat":"Computer and \n information sciences",
       "0.chim":"Chemistry",
       "1.sdv.mhep":"Medical research",
-      "0.phys":"Physical sciences / Astronomy",
-      "0.sde":"Earth / Ecology / Energy / Applied biology",
-      "0.sdu":"Earth / Ecology / Energy / Applied biology",
+      "0.phys":"Physical sciences, Astronomy",
+      "0.sde":"Earth, Ecology, \nEnergy and applied biology",
+      "0.sdu":"Earth, Ecology, \nEnergy and applied biology",
       "0.shs":"Humanities"
    }
 }
