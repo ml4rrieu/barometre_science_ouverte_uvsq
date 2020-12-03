@@ -6,7 +6,7 @@ Etapes
 	______0______ Charger les données
 	______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 	______2______ Ajouter métadonnées de domaine et déduire le statut d'accès ouvert
-	______3______ Effectuer les alignements entre HAL et Scopus
+	______3______ Effectuer les alignements entre HAL et Crossref et BSO
 	______4______ Complétion des cellules vides pour la couverture des bases
 
 fichiers chargés
@@ -327,7 +327,7 @@ df.to_csv("./data/out_uvsq_publications_2015_19__avant_alignement.csv", index = 
 
 
 
-# ______3______ Effectuer les alignements entre HAL et Scopus
+# ______3______ Effectuer les alignements entre HAL et Crossref et BSO
 # Aligner les types de documents
 def align_doctype(row) : 
 	if pd.notna(row["genre"]) : 
