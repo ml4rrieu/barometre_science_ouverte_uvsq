@@ -1,8 +1,8 @@
-## Données à charger/actualiser dans ce dossier
+## Données à charger dans ce dossier
 
 * Les données bibliographiques de votre institution depuis les bases HAL, PUBMED, LENS etc. <br />
 
-* le dump en `.csv` du barometre français de la science ouverte
+* le jeu de données en `.csv` du barometre français de la science ouverte
 
 https://data.enseignementsup-recherche.gouv.fr/explore/dataset/open-access-monitor-france/
 
@@ -13,7 +13,7 @@ https://github.com/ml4rrieu/open_science_tools/blob/main/questionnable_journals/
 
 
 <br /><br />
-## Données à charger/actualiser dans le dossier `APC_tracking` 
+## Données à charger dans le dossier `APC_tracking` 
 
 * `openapc_dois.csv` à récupérer en ligne
 
@@ -55,9 +55,12 @@ limite 2k
 &fl=doiId_s,%20title_s,%20halId_s 
 &wt=csv`
 
-UVSQ & 2015-19 
+UVSQ & 2015-19
+
 ART + COMM if peer reviewed and not popular level
+
 OUV + COUV  + DOUV  if not popular level
+
 UNDEFINIED
 
 

@@ -17,35 +17,35 @@ En construction -- 2020-12-01<br />
 le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (APC : Article Processing Charges).
 
 ### Intégrer les publications de HAL sans DOI
-Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines disciplinaires.
+Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines scientifiques.
 
 **Détection de l'accès ouvert**
 
-Une publication dans HAL est considérée en accès ouvert si l'une conditions suivante est remplie
+Une publication dans HAL est considérée en accès ouvert si au moins une des conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
 - la métadonnées `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
 
 **Alignement des référentiels**
 
-Deux dictionnaires ont été réalisés afin d'aligner les types de document de HAL avec ceux de Crossref et les domaines disciplinaires de HAL avec ceux du baromètre français de la science ovuerte.
-voir `data/match_referentials.json`
+Deux dictionnaires ont été réalisés afin d'aligner les types de document de HAL avec ceux de Crossref et les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte.
+Voir `data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles des modèles économique des revues et enfin les possibles éxonérations (*waivers*) il reste difficle de répondre à cette question. Les informations sont donc données à titre indicatif.
+Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de répondre à cette question. Les informations sont donc données à titre indicatif.
 
 
-L'algorithme réalisé est fait de quatre étapes : 
+L'algorithme réalisé se compose de quatre étapes : 
 
 + Le DOI est-il dans [openapc](https://github.com/OpenAPC/openapc-de) ? 
     + oui, renseigner `doi_in_openapc` et extraire le montant payé
-	+ non, la revue (ISSN) est-elle dans openapc et des frais de publications ont-ils été payés _la même année_ ?
+	+ non, la revue est-elle dans openapc et des frais de publications ont-ils été payés _la même année_ ?
 	
 	    + oui, renseigner `journal_in_openapc`  et extraire la moyenne des montants payés sur l'année
 		
-		+ non, le document est-il en open access sur le site de l'éditeur chez une revue hybride ? (utilisation du champs `oa_status` de unpaywall)
+		+ non, le document est-il en open access sur le site de l'éditeur dans une revue hybride ? (utilisation du champs `oa_status` de unpaywall)
 			+ oui, renseigner `journal_is_hybrid`
-			+ non, la revue (ISSN) est elle dans le [DOAJ](https://doaj.org/) et des informations sont elles présentes ?
+			+ non, la revue est-elle une revue avec APC indéxé dans le [DOAJ](https://doaj.org/) ?
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
 <br />
 
