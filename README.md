@@ -1,6 +1,9 @@
 # Baromètre de la science ouverte de l'UVSQ
 2020-12-07<br />
 
+
+![UVSQ EVOL OA](img/evolution_oa.png)
+<br /><br />
 <br /><br />
 
 <!--repris et adaptaté
