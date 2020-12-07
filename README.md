@@ -1,5 +1,5 @@
 # Baromètre de la science ouverte de l'UVSQ
-En construction -- 2020-12-01<br />
+2020-12-07<br />
 
 <br /><br />
 
@@ -14,25 +14,31 @@ En construction -- 2020-12-01<br />
 
 
 ### Présentation -->
-le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (APC : Article Processing Charges).
+le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
 
 ### Intégrer les publications de HAL sans DOI
-Les publications sans DOI dans HAL ont été intégrées. Cela impact la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines scientifiques.
+Les publications sans DOI dans HAL ont été intégrées. Cela impact l'étape de dédoublonnage, la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines scientifiques.
+
+**Dédoublonnage**
+
+Les publications sans DOI ont été dédoublonnées à partir d'une normalisation des titres : retrait des espaces, accents et mise en minuscule. Les publications sans DOI ayant un titre identique à une autre ont été retirées.
+
+Cette étape permet également d'identifier des publications HAL où le DOI serait manquant (voir les tableaux HAL dans `/data/out/`).
 
 **Détection de l'accès ouvert**
 
-Une publication dans HAL est considérée en accès ouvert si au moins une des conditions suivante est remplie
+Une publication dans HAL est considérée en accès ouvert si au moins l'une des conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
-- la métadonnées `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
+- la métadonnée `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
 
 **Alignement des référentiels**
 
 Deux dictionnaires ont été réalisés afin d'aligner les types de document de HAL avec ceux de Crossref et les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte.
-Voir `data/match_referentials.json`
+Voir `/data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de répondre à cette question. Les informations sont donc données à titre indicatif.
+Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés et a fortiori de connaitre le montant payé. Les informations sont donc données à titre indicatif.
 
 
 L'algorithme réalisé se compose de quatre étapes : 
@@ -45,7 +51,7 @@ L'algorithme réalisé se compose de quatre étapes :
 		
 		+ non, le document est-il en open access sur le site de l'éditeur dans une revue hybride ? (utilisation du champs `oa_status` de unpaywall)
 			+ oui, renseigner `journal_is_hybrid`
-			+ non, la revue est-elle une revue avec APC indéxé dans le [DOAJ](https://doaj.org/) ?
+			+ non, la revue est-elle une revue avec APC indéxée dans le [DOAJ](https://doaj.org/) ?
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
 <br />
 
