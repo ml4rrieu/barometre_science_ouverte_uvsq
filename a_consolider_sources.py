@@ -1,10 +1,10 @@
-import pandas as pd
+import pandas as pd, unidecode
 '''
 Concaténation des données venant des différentes sources (HAL, WOS, Scopus, PUBMED, LENS) et dédoublonnage.
 Sont conservés les documents avec DOI et ceux sans DOI présents dans HAL.
 
 Etapes
-	___0___CHARGER LES FICHIERS CSV_______
+	___0___Charger les fichiers CSV_______
 	___1___Dedoublonner les documents sur les DOI ou bien les titres_______
 	___X___CODE OPTIONNEL POUR ENRICHIR et NETTOYER HAL
 	
@@ -29,7 +29,7 @@ def analyse_df(src_name, df) :
 		return [src_name, 'problem']
 	
 
-#___0___CHARGER LES FICHIERS CSV_______
+#___0___Charger les fichiers CSV_______
 df_buffer = []
 row_buffer = []
 
@@ -78,23 +78,32 @@ rawdf = pd.concat([wos, scopus, hal, pubmed, lens])
 rawdf.sort_values(by=['doi', 'halId'], inplace = True)
 print("\n\nnombre item trouvés (sans dédoublonnage)", len(rawdf[ rawdf['doi'].notna()]) )
 
-# Dedoublonnage sur les doublons de DOI
+# doi en miniscule et normalisze le titre une colonne title_norm
 rawdf['doi'] = rawdf['doi'].str.lower()
+def normalize(title) : 
+	"""retirer les espaces, des accents, sans majuscules"""
+	temp = title.split()
+	temp = "".join(temp).lower()
+	return unidecode.unidecode(temp)
+
+rawdf['title_norm'] = rawdf["title"].apply(lambda row : normalize(row))
+
+
+# __a Dedoublonnage sur les DOI
 # retirer les docs dont le DOI est en double (et conserver les docs sans DOI)
 # (dans le mask il faut que la valeur boolean soit False pour qu'elle soit retirée, d'où le ~ )
 clean_doi = rawdf[ (~rawdf['doi'].duplicated()) | (rawdf['doi'].isna()) ].copy()
 print('\nnombre publi apres dedoublonnage sur DOI', len(clean_doi.index))
 
-# Pour les docs sans DOI dédoublonner sur le titre
-clean_doi['title'] = clean_doi['title'].str.lower()
+# __b dedoublonnage sur les titres normés
 #Sélectionner les documents  avec DOI, et ceux sans DOI dont les titres ne sont pas des doublons
-mask = (clean_doi['doi'].notna()) | ((clean_doi['doi'].isna()) & (~clean_doi['title'].duplicated()))
+mask = (clean_doi['doi'].notna()) | ( (clean_doi['doi'].isna()) & (~clean_doi['title_norm'].duplicated()) )
 clean_doi_title = clean_doi[mask].copy()
-print('nombre publi arpes dedoublonnage des publi sans DOI sur le titre', len(clean_doi_title.index))
+print('nombre publi arpes dedoublonnage (des publi sans DOI) sur le titre', len(clean_doi_title.index))
 
 #retrait des docs sans doi ni halId
-final = clean_doi_title[ (clean_doi_title['doi'].notna()) | (clean_doi_title['halId'].notna())].copy()
-print('nombre publi apres retrait docs sans DOI ni idHAL' , len(final.index))
+final = clean_doi_title[ (clean_doi_title['doi'].notna()) | (clean_doi_title['halId'].notna()) ].copy()
+print('nombre publi apres retrait docs sans DOI ni halId' , len(final.index))
 
 toprint = {
 'doc à traiter': len(final.index),
@@ -109,15 +118,14 @@ toprint = {
 print('\n')
 [print(k, '\t\t', v) for k, v in toprint.items()]
 
-# Extrire des statistiques pour comarer les sources
+# Extraire des statistiques pour comarer les sources
 stat_table = pd.DataFrame(row_buffer, columns=['name', 'all', 'doi', 'no_doi'])
-stat_table.to_csv("./misc/sources_statistiques.csv", index = False)
+stat_table.to_csv("./data/out/sources_statistiques.csv", index = False)
 
-del final['title']
+final.drop(["title", "title_norm"], axis = 1, inplace = True)
 final.to_csv("./data/uvsq_dois_halId_2015_19.csv", index = False, encoding = 'utf8')
 
 
-#exit()
 
 #___X___CODE OPTIONNEL POUR ENRICHIR et NETTOYER HAL
 
@@ -125,23 +133,51 @@ final.to_csv("./data/uvsq_dois_halId_2015_19.csv", index = False, encoding = 'ut
 doionly = rawdf[(
 	 rawdf['doi'].notna() & rawdf['halId'].isna() )].copy()
 doionly['doi'] = doionly['doi'].str.lower()
-del doionly['halId']
 doionly.drop_duplicates('doi', inplace = True)
+del doionly['halId']
 
 halonly = rawdf[(
 	rawdf['doi'].isna() & rawdf['halId'].notna()) ].copy()
 del halonly['doi']
 
-hal_verify_doi = pd.merge(doionly, halonly, on='title')
-hal_verify_doi.sort_values("title", inplace = True)
-hal_verify_doi.to_csv("./misc/hal_verif_doi_manquants.csv", index= False, encoding = 'utf8')
+hal_verify_doi = pd.merge(doionly, halonly, on='title_norm')
+hal_verify_doi.sort_values("title_x", inplace = True)
+hal_verify_doi.drop( ["title_y", "title_norm"], axis = 1, inplace = True)
+hal_verify_doi.to_csv("./data/out/hal_verif_doi_manquants.csv", index= False, encoding = 'utf8')
 
 
 # __b identifier les doublons de titre sur les notices HAL sans DOI
 halonly = rawdf[(
 	rawdf['doi'].isna() & rawdf['halId'].notna() )].copy()
-#identification des doublons de titre
-halonly['duplicated'] = halonly.duplicated('title', keep = False)
+# identification des doublons de titre
+halonly['duplicated'] = halonly.duplicated('title_norm', keep = False)
 halonly_doubl = halonly[ halonly['duplicated']].copy()
 halonly_doubl.sort_values("title", inplace = True)
-halonly_doubl.to_csv("./misc/hal_verif_doublons_titres.csv", index= False, encoding = 'utf8')
+halonly_doubl.drop(["title_norm", "duplicated"], axis = 1, inplace = True)
+
+halonly_doubl.to_csv("./data/out/hal_verif_doublons_titres.csv", index= False, encoding = 'utf8')
+
+
+
+
+
+
+
+
+#___NOT NECESSARY____Venn diagramm
+'''
+pubset = set(pubmed["doi"].values)
+scopusset = set(scopus["doi"].values)
+print("pmonly", len(pubset - scopusset) )
+print("scopus only", len( scopusset - pubset) )
+print("pmInter	scopus", len(pubset.intersection(scopusset)))
+'''
+
+
+'''
+dois.reset_index(drop = True, inplace = True) # re index
+print("dois no duplicates", len(dois))
+print(dois.head())
+dois.to_csv("./data/valid_dois.csv", index = False, encoding = 'utf8')
+
+'''

@@ -6,7 +6,7 @@ Etapes
 	______0______ Charger les données
 	______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 	______2______ Ajouter métadonnées de domaine et déduire le statut d'accès ouvert
-	______3______ Effectuer les alignements entre HAL et Crossref et BSO
+	______3______ Effectuer les alignements entre HAL et Crossref
 	______4______ Complétion des cellules vides pour la couverture des bases
 
 fichiers chargés
@@ -284,7 +284,8 @@ df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str},
 
 # ______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 print("nb of publis to treat", len(df))
-df = enrich_df(df, 18000) #en 2e argument préciser le nb de publication
+#en 2e argument préciser le nb de publication
+df = enrich_df(df, 18000) 
 
 
 
@@ -316,18 +317,18 @@ def deduce_oa_type(row) :
 	(row["hal_location"] == "file" or
 	row["hal_location"] == "arxiv" or 
 	row["hal_location"] == "pubmedcentral") : 
-			loc.append("repository")
+			loc.append(0, "repository")
 
 	return ";".join(loc) if loc else "closed"
 
 df["oa_type"] = df.apply(lambda row : deduce_oa_type(row) , axis = 1)
 
 #un export avant les alignements
-df.to_csv("./data/out_uvsq_publications_2015_19__avant_alignement.csv", index = False)
+df.to_csv("./data/out/uvsq_publications_2015_19__avant_alignement.csv", index = False)
 
 
 
-# ______3______ Effectuer les alignements entre HAL et Crossref et BSO
+# ______3______ Effectuer les alignements entre HAL et BSO
 # Aligner les types de documents
 def align_doctype(row) : 
 	if pd.notna(row["genre"]) : 
@@ -342,7 +343,7 @@ match_ref = json.load(open("./data/match_referentials.json"))
 df["genre"] = df.apply(lambda row : align_doctype(row) , axis = 1)
 
 
-# Aligner les domaines disciplinaires
+# Aligner les domaines scientifiques
 def align_domain(row):
 	if row["scientific_field"] == "unknown" and pd.notna(row["hal_domain"]) :
 		if row["hal_domain"] in match_ref["domain"] : 
@@ -363,4 +364,4 @@ df['upw_coverage'].fillna('missing', inplace = True)
 
 
 # Exporter les données
-df.to_csv("out_uvsq_publications_2015_19.csv", index = False)
+df.to_csv("./data/out/uvsq_publications_2015_19.csv", index = False)
