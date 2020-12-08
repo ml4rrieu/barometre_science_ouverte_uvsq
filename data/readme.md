@@ -67,7 +67,7 @@ ART ou COMM, si peer review et pas de vulgarisation
 
 OUV ou COUV ou DOUV, si ce n'est pas de la vulgarisation
 
-UNDEFINIED (inlusion des preprints !)
+UNDEFINIED (inclusion des preprints !)
 
 
 **PUBMED**
