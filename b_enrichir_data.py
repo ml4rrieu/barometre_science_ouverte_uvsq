@@ -48,7 +48,7 @@ def get_hal_data(doi, halId):
 		
 	res = req_to_json("https://api.archives-ouvertes.fr/search/?q="+ query+\
 		"&fl=halId_s,title_s,authFullName_s,publicationDate_s,publicationDateY_i,docType_s,journalTitle_s,journalIssn_s,"\
-		"journalEissn_s,journalPublisher_s,domain_s,submittedDate_s,submitType_s,linkExtId_s,license_s,selfArchiving_bool"
+		"journalEissn_s,journalPublisher_s,domain_s,submittedDate_s,submitType_s,linkExtId_s,licence_s,selfArchiving_bool"
 		)
 
 	# Si l'API renvoi une erreur ou bien si aucun document n'est trouvé
