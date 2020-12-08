@@ -53,7 +53,9 @@ row_buffer.append( analyse_df('wos', wos) )
 # SCOPUS
 df_buffer.clear()
 for y in range(2015, 2020): #2020 is exclude
-	df_buffer.append( pd.read_csv(f"./data/scopus_{str(y)}.csv", encoding='utf8'))
+	for suff in ["oa", "other"] : 
+		df_buffer.append( pd.read_csv(f"./data/scopus_{str(y)+suff}.csv", encoding='utf8'))
+
 scopus_r = pd.concat(df_buffer)
 scopus = pd.DataFrame( {"doi" : scopus_r["DOI"], 'title': scopus_r['Title']})
 row_buffer.append (analyse_df("scopus", scopus))

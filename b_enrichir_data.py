@@ -237,7 +237,7 @@ def enrich_df(df, count):
 	nb = 0 
 	for row in df.itertuples():
 		# % de progression
-		if row.Index > 0 and row.Index % 10 == 0 : 
+		if row.Index > 0 and row.Index % 50 == 0 : 
 			print( round(row.Index/ len(df.index) * 100), "%")
 		
 		#print(row.doi, row.halId) 
@@ -246,7 +246,7 @@ def enrich_df(df, count):
 		md = get_hal_data(row.doi, row.halId)
 	
 		# __b si le doc a un DOI récupérer les données de unpaywall 
-		# (Les métadonnées de HAL commune avec unpaywall seront écrasées)
+		# (Les métadonnées de HAL communes avec unpaywall seront écrasées)
 		if row.doi  : 
 			add = get_upw_data(row.doi)
 			# ajout des métadonnées qui ne sont pas False
@@ -284,10 +284,12 @@ df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str},
 
 # ______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 print("nb of publis to treat", len(df))
-#en 2e argument préciser le nb de publication
-df = enrich_df(df, 18000) 
+#un 2e argument préciser le nb de publication
+df = enrich_df(df, 20000) 
 
 
+#un export sécurité avant les traitements
+df.to_csv("./data/out/uvsq_publications_2015_19__avant_alignement.csv", index = False)
 
 # ______2______ Ajouter métadonnées de domaine et déduire le statut d'accès ouvert
 # add scientific field from bso Lorrain
@@ -317,14 +319,11 @@ def deduce_oa_type(row) :
 	(row["hal_location"] == "file" or
 	row["hal_location"] == "arxiv" or 
 	row["hal_location"] == "pubmedcentral") : 
-			loc.append(0, "repository")
+			loc.append("repository")
 
 	return ";".join(loc) if loc else "closed"
 
 df["oa_type"] = df.apply(lambda row : deduce_oa_type(row) , axis = 1)
-
-#un export avant les alignements
-df.to_csv("./data/out/uvsq_publications_2015_19__avant_alignement.csv", index = False)
 
 
 

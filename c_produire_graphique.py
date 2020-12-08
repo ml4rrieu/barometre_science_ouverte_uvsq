@@ -11,9 +11,12 @@ Réalisation des 4 graphiques
     
 
 """
-df = pd.read_csv("./data/out/uvsq_publications_2015_19.csv", na_filter= False)
+#dtype = {"author_count": np.float32, "published_year":"string", "hal_selfArchiving": "boolean"}
+df = pd.read_csv("./data/out/uvsq_publications_2015_19.csv", dtype={"published_year":"string"}, na_filter=False)
 print("nb of publications", len(df.index))
 
+#print(df.info())
+#exit()
 
 
 """
@@ -26,15 +29,15 @@ pd.set_option('mode.chained_assignment', None)
 dfyears.is_oa = dfyears.is_oa.astype(bool)
 
 #uniquement pour un retour dans la consol
-halnodoi = dfyears.loc[ (dfyears["doi"] == "") , :]
+halnodoi = dfyears[ dfyears["doi"] == ""]
 print(f"nb publis hal uniquement {len(halnodoi.index)}")
 print(f"soit en % de plus {round(len(halnodoi.index)/len(dfyears.index) * 100, 1)}")
 
-haloa = dfyears.loc[ (dfyears["doi"] == "") & (dfyears["is_oa"] == True) , :]
+haloa = dfyears.loc[ (dfyears["doi"]== "") & (dfyears["is_oa"] == True) , :]
 print("nombre de publi oa dans hal", len(haloa))
 
 #retrouver les types d'AO
-dfyears["oa_publisher_repository"] = dfyears.oa_type == "repository;publisher"
+dfyears["oa_publisher_repository"] = dfyears.oa_type == "publisher;repository"
 dfyears["oa_repository"] = dfyears.oa_type == "repository"
 dfyears["oa_publisher"] = dfyears.oa_type == "publisher"
 dfyears["oa_unk"] = dfyears.oa_type == "unknow"
@@ -113,8 +116,8 @@ ax.spines['right'].set_visible(False)
 
 plt.title("Évolution du taux d'accès ouvert aux publications", fontsize = 20, x = 0.5, y = 1, fontweight = 'bold', alpha = 0.6)
 plt.savefig('./img/evolution_oa.png', dpi=100, bbox_inches='tight', pad_inches=0.1)
-exit()
 
+#exit()
 
 
 #===========================================================
@@ -143,19 +146,17 @@ ax.legend(loc="center", fontsize = 12)
 plt.title('Proportion des publications 2018 en accès ouvert (mesuré en 2020)', fontsize = 20, x = 0.55, y = 1.8, fontweight = 'bold', alpha = 0.6)
 plt.savefig('./img/type_oa_2018.png', dpi=150, bbox_inches='tight', pad_inches=0.9)
 
-exit()
-
 """
-
 #===========================================================
 ##___________________2018 : type d'accès ouvert par éditeurs
 #===========================================================
 publications_2018 = df.loc[df['published_year'] == "2018.0",:]
 publications_par_editeur = publications_2018['publisher'].value_counts().iloc[0:30]
+print(publications_par_editeur)
 sel_editors = ["Elsevier BV", "Springer Science and Business Media LLC", "Wiley", "Copernicus GmbH", "Oxford University Press (OUP)", 
 "American Geophysical Union (AGU)", "Ovid Technologies (Wolters Kluwer Health)", "IEEE", "EDP Sciences", "Springer International Publishing",
-"Informa UK Limited", "BMJ", "IOP Publishing", "American Chemical Society (ACS)", "Public Library of Science (PLoS)", "MDPI AG", 
-"American Meteorological Society", "CAIRN", "Dalloz", "Frontiers Media SA"]
+"BMJ", "Informa UK Limited", "Public Library of Science (PLoS)", "IOP Publishing", "American Chemical Society (ACS)", "MDPI AG", 
+"American Meteorological Society", "Dalloz", "CAIRN", "Frontiers Media SA"]
 editeurs_2018 = publications_2018[publications_2018['publisher'].isin(sel_editors)]
 #Quelle est la proportion d'accès ouvert, par type d'accès, des publications par éditeur dans l'année ?
 df_oa_editeur_global = pd.crosstab([editeurs_2018['publisher']],editeurs_2018['oa_type'])
@@ -174,7 +175,7 @@ df_oa_editeur["Total"] = publications_par_editeur
 df_oa_editeur["y_label"] = df_oa_editeur.index + " - " + df_oa_editeur["Total"].apply(str) \
                                      + " publications"
 df_oa_editeur.index = df_oa_editeur["y_label"]
-df_oa_editeur = df_oa_editeur.sort_values(by='closed', ascending=False)
+df_oa_editeur = df_oa_editeur.sort_values(by=['closed', "publisher"], ascending=False)
 
 ## __2__ Générer le graphique
 import matplotlib.ticker as mtick
@@ -222,8 +223,7 @@ plt.title("Taux d'accès ouvert aux publications 2018 par éditeur", fontsize = 
           fontweight = 'bold', alpha = 0.6)
 plt.savefig('./img/taux_type_oa_editeur.png', dpi=100, bbox_inches='tight', pad_inches=0.9)
 
-exit()
-
+#exit()
 
 #===========================================================
 ##___________________2018 : type d'accès ouvert par discipline
@@ -301,7 +301,7 @@ plt.title("Taux d'accès ouvert des publications 2018 par discipline", fontsize 
 plt.savefig('./img/taux_type_oa_discipline.png', dpi=100, bbox_inches='tight', pad_inches=0.1)
 
 
-exit()
+#exit()
 
 
 
