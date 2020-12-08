@@ -59,7 +59,7 @@ mémo : pour avoir la requête avec toutes des unités faire une recherche par a
 
 **HAL**
 
-`https://api.archives-ouvertes.fr/search?rows=10000&q=structId_i:81173&fq=publicationDateY_i:[2015%20TO%202019]&fq=( (docType_s:(ART OR COMM) AND popularLevel_s:0 AND peerReviewing_s:1) OR (docType_s:(OUV OR COUV OR DOUV) AND popularLevel_s:0) OR (docType_s:UNDEFINED)) &fl=doiId_s,%20title_s,%20halId_s &wt=csv`
+`https://api.archives-ouvertes.fr/search?rows=10000&q=structId_i:81173&fq=publicationDateY_i:[2015%20TO%202019]&fq=( (docType_s:(ART OR COMM) AND popularLevel_s:0 AND peerReviewing_s:1) OR (docType_s:(OUV OR COUV OR DOUV) AND popularLevel_s:0) OR (docType_s:UNDEFINED)) &fl=doiId_s,title_s,halId_s&wt=csv`
 
 UVSQ
 
@@ -77,5 +77,5 @@ UNDEFINIED (inlusion des preprints !)
 
 **lens.org**
 
-`Filters: Year Published = ( 2015 - 2019  ) Institution Name = ( LM-Versailles  , Versailles Saint-Quentin-en-Yvelines University  , Institut Lavoisier de Versailles  , Universite de Versailles  , Université Versailles Saint-Quentin-en-Yvelines  , Université de Versailles Saint-Quentin-en-Yvelines  , Université de Versailles  , University of Versailles  , Université de Versailles Saint-Quentin  , Laboratoire de Mathématiques de Versailles  , Laboratoire d'Ingénierie des Systèmes de Versailles  Show less filters... )`
+`Filters: Year Published = ( 2015 - 2019  ) Institution Name = ( LM-Versailles  , Versailles Saint-Quentin-en-Yvelines University  , Institut Lavoisier de Versailles  , Universite de Versailles  , Université Versailles Saint-Quentin-en-Yvelines  , Université de Versailles Saint-Quentin-en-Yvelines  , Université de Versailles  , University of Versailles  , Université de Versailles Saint-Quentin  , Laboratoire de Mathématiques de Versailles  , Laboratoire d'Ingénierie des Systèmes de Versailles)`
 
