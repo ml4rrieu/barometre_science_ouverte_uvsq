@@ -1,5 +1,4 @@
 # Baromètre de la science ouverte de l'UVSQ
-2020-12-07 -- en construction<br />
 
 
 ![UVSQ EVOL OA](img/evolution_oa.png)
@@ -17,16 +16,14 @@
 
 
 ### Présentation -->
-le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
+le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
 
 ### Intégrer les publications de HAL sans DOI
 Afin de minimiser les lacunes les publications sans DOI venant de HAL ont été intégrées. Cette quantité de publication supplémentaire modifie évidemment les résultats d'accès ouvert, et impact aussi la méthodogie à plusieurs étapes : dédoublonnage, détection de l'accès ouvert et alignement des rétérentiels.
 
 **Résultats**
 
-L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. En effet dans HAL les notices sans le texte intégral sont, du moins en dec. 2020, plus nombreuses. [Données API HAL](https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&indent=true&facet=true&facet.field=submitType_s).
-
-Comparaison pour l'UVSQ
+L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. Voici la Comparaison pour l'UVSQ
 
 |année|doi seuls|doi ou halId|
 |:-----:|:------:|:---------:|
@@ -72,6 +69,16 @@ L'algorithme réalisé se compose de quatre étapes :
 				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
 <br />
 
+### Reproduire ce baromètre pour son établissement
+
+0. Installer Python et les libraries signalées dans le fichier `requirement.txt`
+1. Télécharger l'archive au format .zip
+2. Ajouter les fichiers bibliographiques de votre établissement
+3. Renommer si nécessaire les noms des fichiers importés dans le code `a_consolider_sources.py`
+4. Exécutez les codes `a_consolider_sources.py` puis `b_enrichir_data.py` et `c_produire_graphique.py`
+5. Retrouvez les graphiques générés sont dans le dossier `img` 
+
+
 ### Schéma de données
 
 | column             | description (if needed)                                                                       | source                   |
@@ -116,3 +123,6 @@ L'algorithme réalisé se compose de quatre étapes :
 
 
 
+### Remerciements
+
+Eric Jeangirard, Laetitia Bracco et les équipes et communautés derrière Unpaywall, DOAJ et OpenAPC.
