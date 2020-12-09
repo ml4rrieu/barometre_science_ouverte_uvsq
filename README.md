@@ -20,23 +20,37 @@
 le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb) et réalisé par [@BraccoLaetitia](https://twitter.com/BraccoLaetitia) (merci !). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
 
 ### Intégrer les publications de HAL sans DOI
-Les publications sans DOI dans HAL ont été intégrées. Cela impact l'étape de dédoublonnage, la détection de l'accès ouvert et demande un alignement des référentiels des types de document et des domaines scientifiques.
+Afin de minimiser les lacunes les publications sans DOI venant de HAL ont été intégrées. Cette quantité de publication supplémentaire modifie évidemment les résultats d'accès ouvert, et impact aussi la méthodogie à plusieurs étapes : dédoublonnage, détection de l'accès ouvert et alignement des rétérentiels.
+
+**Résultats**
+
+L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. En effet dans HAL les notices sans le texte intégral sont, du moins en dec. 2020, plus nombreuses. [Données API HAL](https://api.archives-ouvertes.fr/search/?q=*%3A*&rows=0&indent=true&facet=true&facet.field=submitType_s).
+
+Comparaison pour l'UVSQ
+
+|année|doi seuls|doi ou halId|
+|:-----:|:------:|:---------:|
+|2015 |54.8 %|49.3%|
+|2016|56.3%|52.1%|
+|2017|60.2%|56.6%|
+|2018|58.6%|55.1%|
+|2019|58.6%|57.0%|
 
 **Dédoublonnage**
 
-Les publications sans DOI ont été dédoublonnées à partir d'une normalisation des titres : retrait des espaces, accents et mise en minuscule. Les publications sans DOI ayant un titre identique à une autre ont été retirées.
+Les publications sans DOI ont été dédoublonnées à partir d'une normalisation des titres : retrait des espaces, accents et mise en minuscule. Les publications de HAL sans DOI ayant un titre identique à une autre ont été retirées.
 
-Cette étape permet également d'identifier des publications HAL où le DOI serait manquant (voir les tableaux HAL dans `/data/out/`).
+Cette étape permet également d'identifier des publications HAL où le DOI pourrait être manquant (voir les tableaux HAL dans `/data/out/`).
 
 **Détection de l'accès ouvert**
 
-Une publication dans HAL est considérée en accès ouvert si au moins l'une des conditions suivante est remplie
+Une publication dans HAL est en accès ouvert si au moins une des conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
 - la métadonnée `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
 
 **Alignement des référentiels**
 
-Deux dictionnaires ont été réalisés afin d'aligner les types de document de HAL avec ceux de Crossref et les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte.
+Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document de HAL avec ceux de Crossref et (ii)les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte.
 Voir `/data/match_referentials.json`
 <br />
 
