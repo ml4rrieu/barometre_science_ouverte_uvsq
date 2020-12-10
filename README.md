@@ -51,7 +51,7 @@ Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document
 <br />
 
 ### Pister les APC
-Le but est de savoir si une publication a nécessité des frais de publications (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et, a fortiori, de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
+Le but est de savoir si une publication a nécessitée des frais de publications (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et de surcroît de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
 
 
 Quatre niveau d'information sur les APC ont été définis, avec l'algorithme suivant : 
@@ -74,7 +74,7 @@ Quatre niveau d'information sur les APC ont été définis, avec l'algorithme su
 1. Télécharger l'archive au format .zip
 2. Ajouter les fichiers bibliographiques de votre établissement
 3. Renommer si nécessaire les noms des fichiers importés dans le code `a_consolider_sources.py`
-4. Exécutez les codes `a_consolider_sources.py` puis `b_enrichir_data.py` et `c_produire_graphique.py`
+4. Exécutez les codes `a_consolider_sources.py` puis `b_enrichir_data.py`, ce dernier doit tourner pendant plusieurs heures afin de récupérer les données de HAL et Unpaywall (env. 4h pour 16k publications). Enfin exécutez `c_produire_graphique.py`
 5. Retrouvez les graphiques générés dans le dossier `img` 
 
 
