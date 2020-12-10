@@ -23,7 +23,7 @@ Afin de minimiser les lacunes les publications sans DOI venant de HAL ont été 
 
 **Résultats**
 
-L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. Voici la Comparaison pour l'UVSQ
+L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. Voici la comparaison pour l'UVSQ
 
 |année|doi seuls|doi ou halId|
 |:-----:|:------:|:---------:|
@@ -35,7 +35,7 @@ L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publi
 
 **Dédoublonnage**
 
-Les publications sans DOI ont été dédoublonnées à partir d'une normalisation des titres : retrait des espaces, accents et mise en minuscule. Les publications de HAL sans DOI ayant un titre identique à une autre ont été retirées.
+Les publications sans DOI ont été dédoublonnées à partir d'une normalisation des titres : retrait des espaces, accents et mise en minuscule. Les publications de HAL sans DOI ayant un titre identique à une autre publication ont été retirées.
 
 Cette étape permet également d'identifier des publications HAL où le DOI pourrait être manquant (voir les tableaux HAL dans `/data/out/`).
 
@@ -43,30 +43,29 @@ Cette étape permet également d'identifier des publications HAL où le DOI pour
 
 Une publication dans HAL est en accès ouvert si au moins une des conditions suivante est remplie
 - la métadonnée `submitType_s` contient `file`
-- la métadonnée `linkExtId_s` contient `arxiv` ou `pubmemdcentral`
+- la métadonnée `linkExtId_s` contient `arxiv` ou `pubmedcentral`
 
 **Alignement des référentiels**
 
-Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document de HAL avec ceux de Crossref et (ii)les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte.
-Voir `/data/match_referentials.json`
+Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document de HAL avec ceux de Crossref et (ii)les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte. Voir `/data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est d'obtenir des informations sur d'éventuels APC (Article Processing Charges) afin d'alimenter [openapc](https://github.com/OpenAPC/). <br /> En considérant au moins les "accords transformants" (publish & read) ; les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés et a fortiori de connaitre le montant payé. Les informations sont donc données à titre indicatif.
+Le but est de savoir si une publication a nécessité des frais de publications (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et, a fortiori, de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
 
 
-L'algorithme réalisé se compose de quatre étapes : 
+Quatre niveau d'information sur les APC ont été définis, avec l'algorithme suivant : 
 
-+ Le DOI est-il dans [openapc](https://github.com/OpenAPC/openapc-de) ? 
++ Le DOI est-il dans [OpenAPC](https://github.com/OpenAPC/openapc-de) ? 
     + oui, renseigner `doi_in_openapc` et extraire le montant payé
-	+ non, la revue est-elle dans openapc et des frais de publications ont-ils été payés _la même année_ ?
+	+ non, la revue est-elle dans OpenAPC et des frais de publications ont-ils été payés _la même année_ ?
 	
 	    + oui, renseigner `journal_in_openapc`  et extraire la moyenne des montants payés sur l'année
 		
 		+ non, le document est-il en open access sur le site de l'éditeur dans une revue hybride ? (utilisation du champs `oa_status` de unpaywall)
 			+ oui, renseigner `journal_is_hybrid`
 			+ non, la revue est-elle une revue avec APC indéxée dans le [DOAJ](https://doaj.org/) ?
-				+ oui, retourner `apc_journals_in_doaj` , le prix et la devise
+				+ oui, retourner `apc_journals_in_doaj`, le prix et la devise
 <br />
 
 ### Reproduire ce baromètre pour son établissement
@@ -76,7 +75,7 @@ L'algorithme réalisé se compose de quatre étapes :
 2. Ajouter les fichiers bibliographiques de votre établissement
 3. Renommer si nécessaire les noms des fichiers importés dans le code `a_consolider_sources.py`
 4. Exécutez les codes `a_consolider_sources.py` puis `b_enrichir_data.py` et `c_produire_graphique.py`
-5. Retrouvez les graphiques générés sont dans le dossier `img` 
+5. Retrouvez les graphiques générés dans le dossier `img` 
 
 
 ### Schéma de données
@@ -120,9 +119,10 @@ L'algorithme réalisé se compose de quatre étapes :
 
 ### Voir aussi
   * le baromètre français de la science ouverte https://ministeresuprecherche.github.io/bso/
+  * le baromètre de l'université de Lorraine http://scienceouverte.univ-lorraine.fr/barometre-lorrain-de-la-science-ouverte/
 
 
 
 ### Remerciements
 
-Eric Jeangirard, Laetitia Bracco et les équipes et communautés derrière Unpaywall, DOAJ et OpenAPC.
+Eric Jeangirard et Laetitia Bracco. Les équipes et communautés derrière Unpaywall, DOAJ et OpenAPC.
