@@ -19,13 +19,13 @@
 le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
 
 ### Intégrer les publications de HAL sans DOI
-Afin de minimiser les lacunes les publications sans DOI venant de HAL ont été intégrées. Cette quantité de publication supplémentaire modifie évidemment les résultats d'accès ouvert, et impact aussi la méthodogie à plusieurs étapes : dédoublonnage, détection de l'accès ouvert et alignement des rétérentiels.
+Afin de minimiser les lacunes, les publications sans DOI venant de HAL ont été intégrées. Cette quantité de publications supplémentaires modifie évidemment les résultats d'accès ouvert, et impacte aussi la méthodogie à plusieurs étapes : dédoublonnage, détection de l'accès ouvert et alignement des rétérentiels.
 
 **Résultats**
 
 L'intégration des publications de HAL sans DOI *baisse* le pourcentage de publication en accès ouvert. Voici la comparaison pour l'UVSQ
 
-|année|doi seuls|doi ou halId|
+|année|DOI seuls|DOI ou halId|
 |:-----:|:------:|:---------:|
 |2015 |54.8 %|49.3%|
 |2016|56.3%|52.1%|
@@ -41,20 +41,20 @@ Cette étape permet également d'identifier des publications HAL où le DOI pour
 
 **Détection de l'accès ouvert**
 
-Une publication dans HAL est en accès ouvert si au moins une des conditions suivante est remplie
+Une publication dans HAL est en accès ouvert si au moins une des conditions suivantes est remplie
 - la métadonnée `submitType_s` contient `file`
 - la métadonnée `linkExtId_s` contient `arxiv` ou `pubmedcentral`
 
 **Alignement des référentiels**
 
-Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document de HAL avec ceux de Crossref et (ii)les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte. Voir `/data/match_referentials.json`
+Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document de HAL avec ceux de Crossref et (ii) les domaines scientifiques de HAL avec ceux du baromètre français de la science ouverte. Voir `/data/match_referentials.json`
 <br />
 
 ### Pister les APC
-Le but est de savoir si une publication a nécessitée des frais de publications (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et de surcroît de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
+Le but est de savoir si une publication a nécessité des frais de publication (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et de surcroît de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
 
 
-Quatre niveau d'information sur les APC ont été définis, avec l'algorithme suivant : 
+Quatre niveaux d'information sur les APC ont été définis, avec l'algorithme suivant : 
 
 + Le DOI est-il dans [OpenAPC](https://github.com/OpenAPC/openapc-de) ? 
     + oui, renseigner `doi_in_openapc` et extraire le montant payé
@@ -74,8 +74,8 @@ Quatre niveau d'information sur les APC ont été définis, avec l'algorithme su
 1. Télécharger l'archive au format .zip
 2. Ajouter les fichiers bibliographiques de votre établissement
 3. Renommer si nécessaire les noms des fichiers importés dans le code `a_consolider_sources.py`
-4. Exécutez les codes `a_consolider_sources.py` puis `b_enrichir_data.py`, ce dernier doit tourner pendant plusieurs heures afin de récupérer les données de HAL et Unpaywall (env. 4h pour 16k publications). Enfin exécutez `c_produire_graphique.py`
-5. Retrouvez les graphiques générés dans le dossier `img` 
+4. Exécuter les codes `a_consolider_sources.py` puis `b_enrichir_data.py`, ce dernier doit tourner pendant plusieurs heures afin de récupérer les données de HAL et Unpaywall (env. 4h pour 16k publications). Enfin exécuter `c_produire_graphique.py`
+5. Retrouver les graphiques générés dans le dossier `img` 
 
 
 ### Schéma de données

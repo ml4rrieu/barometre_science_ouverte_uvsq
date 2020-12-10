@@ -19,8 +19,8 @@ fichiers chargés
 	./data/open-access-monitor-france.csv : le dump du barometre fr science ovuerte 
 	
 fichers produits
-	./data/out_uvsq_publications_2015_19__avant_alignement.csv : export des données avant d'effectuer les aligments HAL-Unpaywall-BSO 
-	./data/out_uvsq_publications_2015_19.csv : ficher finalisé 
+	./data/out/uvsq_publications_2015_19__avant_alignement.csv : export des données avant d'effectuer les aligments HAL-Unpaywall-BSO 
+	./data/out/uvsq_publications_2015_19.csv : ficher finalisé 
 """
 
 def req_to_json(url):

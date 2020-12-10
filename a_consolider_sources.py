@@ -10,10 +10,10 @@ Etapes
 	
  
 fichiers produits
-	data/uvsq_dois_halId_2015_19 : liste des documents conservés avec une colonne DOI et une autre halID
- 	misc/sources_statistiques.csv : statistiques volumétriques sur les sources
- 	misc/hal_verif_doi_manquants : documents dans HAL sans DOI dont le titre correspond à un doc avec DOI 
- 	misc/hal_verif_doublons_titres.csv : documents dans HAL avec titre identifique
+	data/uvsq_dois_halId_2015_19 : liste des documents conservés avec une colonne DOI et une autre halId
+ 	data/out/sources_statistiques.csv : statistiques volumétriques sur les sources
+ 	data/out/hal_verif_doi_manquants : documents dans HAL sans DOI dont le titre correspond à un doc avec DOI 
+ 	data/out/hal_verif_doublons_titres.csv : documents dans HAL avec titre identifique
 
 '''
 
