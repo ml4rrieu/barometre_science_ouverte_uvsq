@@ -51,7 +51,7 @@ Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document
 <br />
 
 ### Pister les APC
-Le but est de savoir si une publication a nécessité des frais de publication (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles éxonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et de surcroît de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
+Le but est de savoir si une publication a nécessité des frais de publication (Article Processing Charges : APC), afin d'aider l'alimentation de [OpenAPC](https://github.com/OpenAPC/). En considérant au moins les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles exonérations (*waivers*) il reste difficle de savoir si des APCs ont été payés, et de surcroît de connaître le montant payé. Les informations sont donc données à titre indicatif. Enfin, le pistage se fait actuellement au niveau de l'article, dans une 2e version il faudra récupérer l'affiliation de l'auteur correspondant afin de savoir quel serait l'établissement payeur.
 
 
 Quatre niveaux d'information sur les APC ont été définis, avec l'algorithme suivant : 
