@@ -10,11 +10,11 @@ Etapes
 	______4______ Complétion des cellules vides pour la couverture des bases
 
 fichiers chargés
-	./data/uvsq_dois_halId_2015_19.csv : les identifiants des publications de l'université
+	./data/uvsq_dois_halId_2015_19.csv : les identifiants (doi et halId) des publications
 	./data/apc_tracking/openapc_dois.csv : les DOI des documents dans openapc
 	./data/apc_tracking/openapc_journals.csv : les journaux dans openapc avec pour chaque années le prix moyen payé
 	./data/apc_tracking/doaj_apc_journals.csv : le dump du DOAJ
-	./data/suspiciousIssns.json : une liste de journaux suspects extraite de https://github.com/stop-predatory-journals/stop-predatory-journals.github.io
+	./data/suspiciousIssns.json : une liste de journaux suspects 
 	./data/match_referentials.json : correspondance entre les référentiels HAL type de document et domaine, vers ceux respectivement de crossref et du barometre fr science ouverte 
 	./data/open-access-monitor-france.csv : le dump du barometre fr science ovuerte 
 	
@@ -51,7 +51,7 @@ def get_hal_data(doi, halId):
 		"journalEissn_s,journalPublisher_s,domain_s,submittedDate_s,submitType_s,linkExtId_s,licence_s,selfArchiving_bool"
 		)
 
-	# Si l'API renvoi une erreur ou bien si aucun document n'est trouvé
+	# Si l'API renvoie une erreur ou bien si aucun document n'est trouvé
 	if res.get("error") or res['response']['numFound'] == 0 : 
 		return {
 		'hal_coverage':'missing'
@@ -77,9 +77,7 @@ def get_hal_data(doi, halId):
 	domain = False
 	if res.get('domain_s') : 
 		domain = res["domain_s"][0]
-	if not domain : 
-		print("pb domain in hal", res.get("halId_s"))
-
+	
 	return{
 	#métadonnées partagées avec unpaywall
 	'title': res['title_s'][0],
@@ -89,7 +87,7 @@ def get_hal_data(doi, halId):
 	'journal_name': res.get('journalTitle_s'),
 	'journal_issns': issn,
 	'publisher': res.get('journalPublisher_s'),
-	#métadonnées propre à HAL
+	#métadonnées propres à HAL
 	'halId': res.get('halId_s'),
 	'hal_coverage' : 'in',
 	'hal_submittedDate' : res.get('submittedDate_s'),
@@ -144,7 +142,7 @@ def get_upw_data(doi):
 	"journal_name": res.get("journal_name"),
 	"journal_issns": res.get("journal_issns"),
 	"publisher": res.get("publisher"),
-	# métadonnées propre à unpaywall
+	# métadonnées propres à unpaywall
 	"genre": res.get("genre"),
 	"journal_is_in_doaj": res.get("journal_is_in_doaj"),
 	"upw_coverage": upw_coverage,
@@ -179,7 +177,7 @@ def track_apc(doi, md) :
 	
 	issns = md["journal_issns"].split(";")
 
-	#__b si l'ISSN est dans openapc et que des APC ont été payés la même années
+	#__b si l'ISSN est dans openapc et que des APC ont été payés la même année
 	cols = ["issn", "issn_print", "issn_electronic"]
 	openapc_mean = False
 	if md.get("published_year") and int(md["published_year"]) > 2014 : 
@@ -284,16 +282,16 @@ df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str},
 
 # ______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 print("nb of publis to treat", len(df))
-#un 2e argument préciser le nb de publication
+#en 2e arg. le nb de publications à traiter
 df = enrich_df(df, 20000) 
-
 
 #un export sécurité avant les traitements
 df.to_csv("./data/out/uvsq_publications_2015_19__avant_alignement.csv", index = False)
 
+
 # ______2______ Ajouter métadonnées de domaine et déduire le statut d'accès ouvert
 # add scientific field from bso Lorrain
-scifield = pd.read_csv("./data/open-access-monitor-france.csv", usecols= ["doi", "scientific_field"],  sep=";", )
+scifield = pd.read_csv("./data/open-access-monitor-france.csv", usecols= ["doi", "scientific_field"],  sep=";" )
 df = pd.merge(df, scifield, how= "left", on = "doi")
 df['scientific_field'].fillna('unknown', inplace = True) 
 
@@ -341,7 +339,6 @@ def align_doctype(row) :
 match_ref = json.load(open("./data/match_referentials.json"))		
 df["genre"] = df.apply(lambda row : align_doctype(row) , axis = 1)
 
-
 # Aligner les domaines scientifiques
 def align_domain(row):
 	if row["scientific_field"] == "unknown" and pd.notna(row["hal_domain"]) :
@@ -349,14 +346,13 @@ def align_domain(row):
 			return match_ref["domain"][row["hal_domain"]]
 		else : 
 			print("cannot align domain", row["halId"])
-
 	else : 
 		return row["scientific_field"]
 
 df["scientific_field"] = df.apply(lambda row : align_domain(row), axis = 1)
 
 
-
+	
 # ______4______ Complétion des cellules vides pour la couverture des bases
 df['hal_coverage'].fillna('missing', inplace = True) 
 df['upw_coverage'].fillna('missing', inplace = True) 
