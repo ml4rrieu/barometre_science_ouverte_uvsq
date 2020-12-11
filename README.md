@@ -97,23 +97,23 @@ Quatre niveaux d'information sur les APC ont été définis, avec l'algorithme s
 | oa_status          | Status/type of open access (green, gold, hybrid, bronze)                                      | unpaywall                |
 | upw_location       | Where OA is founded (repository and/or publisher)                                             | unpaywall                |
 | version            | Publication version available (submitted, accepted, published)                                | unpaywall                |
+| licence            | licence finded in unpaywall                                                                   | unpaywall                |
+| journal_is_in_doaj | Is this resource published in a DOAJ-indexed journal                                          | unpaywall                |
+| journal_is_oa      | Is this resource published in a completely OA journal                                         | unpaywall                |
+| is_paratext        | Is the item an ancillary part of a journal (column disappear if everything is False )         | unpaywall                |
 | suspicious_journal | Is the journal in "predatory" list                                                            | [Stop Predatory Journals](https://github.com/stop-predatory-journals/stop-predatory-journals.github.io)|
 | hal_submittedDate  | When the publication has been submitted in HAL                                                | hal                      |
 | hal_location       | Where OA is founded (file, arxiv, pubmedcentral)                                              | hal                      |
 | hal_licence        | Licence in HAL deposit                                                                        | hal                      |
 | hal_serlArchiving  | Curiosity : is the deposit made by the author                                                 | hal                      |
 | hal_docType        | Type of document                                                                              | hal                      |
-| hal_domain         | Domain, scientific field from hal                                                             | hal                      |
-| licence            | licence finded in unpaywall                                                                   | unpaywall                |
+| hal_domain         | Domain, scientific field                                                                      | hal                      |
 | apc_tracking       | APC information (doi_in_openapc, journal_in_openapc, journal_is_hybrid, apc_journals_in_doaj) | openapc, doaj, unpaywall |
-| journal_is_in_doaj | Is this resource published in a DOAJ-indexed journal                                          | unpaywall                |
-| journal_is_oa      | Is this resource published in a completely OA journal                                         | unpaywall                |
-| is_paratext        | Is the item an ancillary part of a journal (column disappear if everything is False )         | unpaywall                |
 | apc_amount         | Rough approximation of APC cost                                                               | openapc, doaj            |
 | apc_currency       |                                                                                               | openapc, doaj            |
 | scientific_field   | Scientific field from barometre-science-ouverte and hal                                       | barometre-so, hal        |
 | is_oa              | Is there an OA copy of this ressource                                                         | hal, unpaywall           |
-| oa_type            | Publisher and/repository                                                                      | hal, unpaywall           |
+| oa_type            | Publisher and/or repository                                                                   | hal, unpaywall           |
 
 
 
