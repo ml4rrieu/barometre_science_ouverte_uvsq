@@ -1,0 +1,29 @@
+
+data/apc_tracking/openapc_dois.csv
+data/hal_2015-19.csv
+data/lens_2015-19.csv
+data/memo req scopus/code.py
+data/memo req scopus/scopus_ce_quon_garde_ou_non.txt
+data/memo req scopus/wos.txt
+data/open-access-monitor-france.csv
+data/out/test__uvsq_publications_2015_19.csv
+data/out/test__uvsq_publications_2015_19__avant_alignement.csv
+data/out/uvsq_publications_2015_19__avant_alignement.csv
+data/pubmed_2015-19.csv
+data/scopus_2015oa.csv
+data/scopus_2015other.csv
+data/scopus_2016oa.csv
+data/scopus_2016other.csv
+data/scopus_2017oa.csv
+data/scopus_2017other.csv
+data/scopus_2018oa.csv
+data/scopus_2018other.csv
+data/scopus_2019oa.csv
+data/scopus_2019other.csv
+data/test__alone.csv
+data/wos_2015-16.txt
+data/wos_2017-18.txt
+data/wos_2019.txt
+nota.txt
+old/a_consolider_sources-titre non normalise.py
+temp.py

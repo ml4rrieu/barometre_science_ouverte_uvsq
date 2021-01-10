@@ -71,7 +71,7 @@ def get_hal_data(doi, halId):
 	#déduire les ISSNs
 	issn = [ res.get("journalIssn_s"), res.get("journalEissn_s")]
 	issn = [item for item in issn if item]
-	issn = ";".join(issn) if issn else False
+	issn = ",".join(issn) if issn else False
 
 	# Vérifier la présence de domaine disciplinaire (qq notices peuvent ne pas avoir de domaine)
 	domain = False
@@ -92,7 +92,7 @@ def get_hal_data(doi, halId):
 	'hal_coverage' : 'in',
 	'hal_submittedDate' : res.get('submittedDate_s'),
 	'hal_location' : hal_location, 
-	'hal_licence': res.get('license_s'),
+	'hal_licence': res.get('licence_s'),
 	'hal_serlArchiving' : res.get("selfArchiving_bool"),
 	'hal_docType': res.get('docType_s'),
 	'hal_domain': domain,
@@ -175,10 +175,13 @@ def track_apc(doi, md) :
 	if not md.get("journal_issns") : 
 		return {}
 	
-	issns = md["journal_issns"].split(";")
+	#récupérer les différentes issn
+	issns = md["journal_issns"].split(",")
+	if md.get("journal_issn_l") :
+		issns.append(md["journal_issn_l"])
 
 	#__b si l'ISSN est dans openapc et que des APC ont été payés la même année
-	cols = ["issn", "issn_print", "issn_electronic"]
+	cols = ["issn", "issn_print", "issn_electronic", "issn_l"]
 	openapc_mean = False
 	if md.get("published_year") and int(md["published_year"]) > 2014 : 
 		for item in issns : 
@@ -238,7 +241,7 @@ def enrich_df(df, count):
 		if row.Index > 0 and row.Index % 50 == 0 : 
 			print( round(row.Index/ len(df.index) * 100), "%")
 		
-		#print(row.doi, row.halId) 
+		print(row.doi, row.halId) 
 			
 		# __a récupérer les métadonnées de HAL
 		md = get_hal_data(row.doi, row.halId)
@@ -275,18 +278,19 @@ doaj_apc_journals = pd.read_csv("./data/apc_tracking/doaj_apc_journals.csv", na_
 fhjson = open('./data/suspiciousIssns.json') 
 suspiciousIssns = json.load(fhjson)
 
-#df = pd.read_csv("./data/test__alone.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
-df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
+out_file_name = "test__" # pour faire des test sans écraser le jeux de données
+df = pd.read_csv("./data/test__alone.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
+#df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
 
 
 
 # ______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 print("nb of publis to treat", len(df))
 #en 2e arg. le nb de publications à traiter
-df = enrich_df(df, 20000) 
+df = enrich_df(df, 4) 
 
 #un export sécurité avant les traitements
-df.to_csv("./data/out/uvsq_publications_2015_19__avant_alignement.csv", index = False)
+df.to_csv(f"./data/out/{out_file_name}uvsq_publications_2015_19__avant_alignement.csv", index = False)
 
 
 # ______2______ Ajouter métadonnées de domaine et déduire le statut d'accès ouvert
@@ -359,4 +363,4 @@ df['upw_coverage'].fillna('missing', inplace = True)
 
 
 # Exporter les données
-df.to_csv("./data/out/uvsq_publications_2015_19.csv", index = False)
+df.to_csv(f"./data/out/{out_file_name}uvsq_publications_2015_19.csv", index = False)
