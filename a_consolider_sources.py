@@ -1,6 +1,7 @@
 import pandas as pd, unidecode
+import re
 '''
-Concaténation des données venant des différentes sources (HAL, WOS, Scopus, PUBMED, LENS) et dédoublonnage.
+Consolidations des données venant des différentes sources (HAL, WOS, Scopus, PUBMED, LENS) et dédoublonnage.
 Sont conservés les documents avec DOI et ceux sans DOI présents dans HAL.
 
 Etapes
@@ -16,61 +17,74 @@ fichiers produits
  	data/out/hal_verif_doublons_titres.csv : documents dans HAL avec titre identifique
 
 '''
+def normalize_txt(title) : 
+	"""retirer les espaces, des accents, sans majuscules"""
+	cut = re.split("\W+", title)
+	join_cut = "".join(cut).lower()
+	return unidecode.unidecode(join_cut)
 
-def analyse_df(src_name, df) : 
-	"""analyse nb de doi dans la base et export de statistique  """
+
+def conforme_df(df, col_name):
+	"""garde les colonnes de col_name, les renommes et passe en miniscule doi et titre """
+	df = df[ list(col_name.keys()) ].copy()  
+	df.rename(columns = col_name, inplace = True) 
+
+	df["doi"] = df["doi"].str.lower() # doi en minuscule
+	df["title_norm"] = df["title"].apply(lambda row:  normalize_txt(row))
+	df.drop(columns=["title"], inplace = True)
+	return df
+
+def extract_stats_from_base(src_name, df) : 
+	"""de la base extraire les données total publi, doi only, no doi"""
 	no_doi = df["doi"].isna().sum()
 	w_doi = df["doi"].str.match("10.").sum()
 	if no_doi + w_doi == len(df.index) : 
 		print(f"\n\n{src_name} imported ok\n\tdois {w_doi}\n\tno dois {no_doi}")
-		return [src_name, len(df.index), w_doi, no_doi]
+		stats_buffer.append([src_name, len(df.index), w_doi, no_doi] )
 	else :
 		print(f"{src_name} not imported")
-		return [src_name, 'problem']
 	
 
 #___0___Charger les fichiers CSV_______
-df_buffer = []
-row_buffer = []
-
+stats_buffer, df_buffer = [], []
 
 # HAL 
-hal_r = pd.read_csv("./data/hal_2015-19.csv", encoding='utf8')
-hal = pd.DataFrame({"doi": hal_r["doiId_s"], 'halId':hal_r['halId_s'], 'title':hal_r['title_s']})
-row_buffer.append (analyse_df("hal", hal))
+hal = pd.read_csv("./data/hal_2015-19.csv")
+hal = conforme_df( hal, {"doiId_s": "doi", 'halId_s': 'halId', 'title_s': 'title'})
+extract_stats_from_base("hal", hal)
 
 
 # WOS
 files = ["wos_2015-16","wos_2017-18", "wos_2019"]
 for f in files : 
-	df = pd.read_csv(f"./data/{f}.txt", sep="\t", index_col=False, encoding='utf8')
+	df = pd.read_csv(f"./data/{f}.txt", sep="\t", index_col=False)
 	df_buffer.append(df)
-wos_r = pd.concat(df_buffer)
-wos = pd.DataFrame( {"doi":  wos_r["DI"], 'title': wos_r['TI']} )
-row_buffer.append( analyse_df('wos', wos) )
+
+wos = pd.concat(df_buffer)
+wos = conforme_df( wos, {"DI":"doi", "TI": "title"})
+extract_stats_from_base('wos', wos)
+
 
 
 # SCOPUS
 df_buffer.clear()
 for y in range(2015, 2020): #2020 is exclude
 	for suff in ["oa", "other"] : 
-		df_buffer.append( pd.read_csv(f"./data/scopus_{str(y)+suff}.csv", encoding='utf8'))
+		df_buffer.append( pd.read_csv(f"./data/scopus_{str(y)+suff}.csv"))
 
-scopus_r = pd.concat(df_buffer)
-scopus = pd.DataFrame( {"doi" : scopus_r["DOI"], 'title': scopus_r['Title']})
-row_buffer.append (analyse_df("scopus", scopus))
-
+scopus = pd.concat(df_buffer)
+scopus = conforme_df(scopus, {"DOI" : "doi", "Title" : "title"})
+extract_stats_from_base("scopus", scopus)
 
 # PUBMED
-pubmed_r = pd.read_csv("./data/pubmed_2015-19.csv", encoding='utf8')
-pubmed = pd.DataFrame({"doi": pubmed_r["DOI"], 'title':pubmed_r['Title']})
-row_buffer.append(analyse_df('pubmed', pubmed))
-
+pubmed = pd.read_csv("./data/pubmed_2015-19.csv")
+pubmed = conforme_df( pubmed, {"DOI" : "doi" , "Title" : "title" })
+extract_stats_from_base('pubmed', pubmed)
 
 # LENS
-lens_r = pd.read_csv("./data/lens_2015-19.csv", encoding='utf8')
-lens = pd.DataFrame({'doi': lens_r["DOI"], 'title':lens_r['Title']})
-row_buffer.append( analyse_df("lens", lens))
+lens = pd.read_csv("./data/lens_2015-19.csv")
+lens = conforme_df(lens, {"DOI" : "doi", "Title" : "title"})
+extract_stats_from_base("lens", lens)
 
 
 
@@ -78,56 +92,116 @@ row_buffer.append( analyse_df("lens", lens))
 rawdf = pd.concat([wos, scopus, hal, pubmed, lens]) 
 # trie des documents par DOI puis par halId 
 rawdf.sort_values(by=['doi', 'halId'], inplace = True)
-print("\n\nnombre item trouvés (sans dédoublonnage)", len(rawdf[ rawdf['doi'].notna()]) )
-
-# doi en miniscule et normalisze le titre une colonne title_norm
-rawdf['doi'] = rawdf['doi'].str.lower()
-def normalize(title) : 
-	"""retirer les espaces, des accents, sans majuscules"""
-	temp = title.split()
-	temp = "".join(temp).lower()
-	return unidecode.unidecode(temp)
-
-rawdf['title_norm'] = rawdf["title"].apply(lambda row : normalize(row))
+print("\n\nAvant dédoublonnage nombre item", len(rawdf[ rawdf['doi'].notna()]) )
 
 
 # __a Dedoublonnage sur les DOI
 # retirer les docs dont le DOI est en double (et conserver les docs sans DOI)
 # (dans le mask il faut que la valeur boolean soit False pour qu'elle soit retirée, d'où le ~ )
 clean_doi = rawdf[ (~rawdf['doi'].duplicated()) | (rawdf['doi'].isna()) ].copy()
-print('\nnombre publi apres dedoublonnage sur DOI', len(clean_doi.index))
+print('Apres dedoublonnage sur DOI, nb publi', len(clean_doi.index))
 
 # __b dedoublonnage sur les titres normés
-#Sélectionner les documents  avec DOI, et ceux sans DOI dont les titres ne sont pas des doublons
+#sélectionner les documents  avec DOI, et ceux sans DOI dont les titres ne sont pas des doublons
 mask = (clean_doi['doi'].notna()) | ( (clean_doi['doi'].isna()) & (~clean_doi['title_norm'].duplicated()) )
 clean_doi_title = clean_doi[mask].copy()
-print('nombre publi arpes dedoublonnage (des publi sans DOI) sur le titre', len(clean_doi_title.index))
+print("Apres dedoublonnage DOI et (pour les sans DOI) sur titre , nb publi", len(clean_doi_title.index))
 
-#retrait des docs sans doi ni halId
+# retenir uniquement les publis  avec DOI ou idHAL
 final = clean_doi_title[ (clean_doi_title['doi'].notna()) | (clean_doi_title['halId'].notna()) ].copy()
-print('nombre publi apres retrait docs sans DOI ni halId' , len(final.index))
+
+#ajout des données retenues dans les stats
+stats_buffer.append([
+	"retenu", 
+	len(final), 
+	len(final[ final['doi'].notna()]), 
+	len(final[ final['doi'].isna()]) ])
 
 toprint = {
-'doc à traiter': len(final.index),
-'doc avec doi': len(final[ final['doi'].notna() ]),
-'doc sans doi' : len(final[ final['doi'].isna() ]),
-#les docs non pris en compte sont les docs sans DOI et sans idHAL
-'docs echappes' : len( clean_doi_title[  (clean_doi_title['doi'].isna()) & (clean_doi_title['halId'].isna()) ] ),
-'pertinence %' : round(
-	len(final.index)/len(clean_doi_title.index)*100, 1)
+"\n\ndoc total apres dedoublonnage" : len(clean_doi_title),
+'docs exclus (no doi no halId) ' : len( clean_doi_title[  (clean_doi_title['doi'].isna()) & (clean_doi_title['halId'].isna()) ] ),
+'doc inclus (doi ou halId)\t': len(final),
+'pertinence %\t\t\t\t' : round(
+	len(final.index)/len(clean_doi_title.index)*100, 1),
+'\ndoc à traiter avec doi': len(final[ final['doi'].notna() ]),
+'doc à traiter sans doi' : len(final[ final['doi'].isna() ]),
 }
 
-print('\n')
 [print(k, '\t\t', v) for k, v in toprint.items()]
 
-# Extraire des statistiques pour comarer les sources
-stat_table = pd.DataFrame(row_buffer, columns=['name', 'all', 'doi', 'no_doi'])
-stat_table.to_csv("./data/out/sources_statistiques.csv", index = False)
 
-final.drop(["title", "title_norm"], axis = 1, inplace = True)
+
+# Extraire des statistiques pour comarer les sources
+stat_table = pd.DataFrame(stats_buffer, columns=['name', 'all', 'doi', 'no_doi'])
+stat_table.to_csv("./data/out/statistiques_sur_les_bases.csv", index = False)
+
+#extraire le jeu de données final
+final.drop(["title_norm"], axis = 1, inplace = True)
 final.to_csv("./data/uvsq_dois_halId_2015_19.csv", index = False, encoding = 'utf8')
 
 
+
+#______________VENN DIAGRAMM sur les bases
+def deduce_set_from_df(df) :
+	"""dans un set mettre les dois et, pour les publis sans dois, les titres normés""" 
+	publis = df["doi"].tolist()
+	titleonly = df[ df["doi"].isna()]
+	titles = titleonly["title_norm"].tolist()
+	publis.extend(titles)
+	return set(publis)
+
+venn_data = {
+"Hal" : deduce_set_from_df(hal),
+"Scopus" : deduce_set_from_df(scopus),
+"Wos" : deduce_set_from_df(wos)
+#"Pubmed" : set(pubmed["doi"].values),
+#"Lens" : set(lens["doi"].values)
+}
+
+
+from matplotlib_venn import venn2, venn2_circles, venn2_unweighted
+from matplotlib_venn import venn3, venn3_circles
+from matplotlib import pyplot as plt
+
+plt.figure(figsize=(14,8))
+
+v = venn3(subsets = 
+	(venn_data["Hal"], venn_data["Scopus"], venn_data["Wos"]),
+	#set_colors=("#f2a191", "#f0c165", "#64bac3" ),
+	 set_labels = tuple(venn_data.keys()), alpha = 0.3  )
+	  
+
+#change label size
+for label in v.set_labels : 
+	label.set_fontsize(13)
+	label.set_fontweight("bold")
+#[label.set_fontsize(13) for label in v.set_labels]
+ 
+plt.title("Recouvrement entre les 3 principales bases", fontsize=16, fontweight = 'bold', alpha = 0.6)
+plt.savefig('./img/recouvrement_entre_bases.png', dpi=130, bbox_inches='tight', pad_inches=0.1)
+
+exit()
+
+#print("pmonly", len(pubmedset - scopusset) )
+#print("scopus only", len( scopusset - pubmedset) )
+#print("pmInter	scopus", len(pubmedset.intersection(scopusset)))
+
+
+"""
+venn_data = {
+"HAL" : set(hal["doi"].values),
+"Scopus" : set(scopus["doi"].values),
+"Wos" : set(wos["doi"].values),
+"Pubmed" : set(pubmed["doi"].values),
+"Lens" : set(lens["doi"].values)
+}
+
+import matplotlib
+from matplotlib import pyplot as plt
+import venn
+from venn import venn
+
+"""
 
 #___X___CODE OPTIONNEL POUR ENRICHIR et NETTOYER HAL
 
@@ -166,20 +240,3 @@ halonly_doubl.to_csv("./data/out/hal_verif_doublons_titres.csv", index= False, e
 
 
 
-#___NOT NECESSARY____Venn diagramm
-'''
-pubset = set(pubmed["doi"].values)
-scopusset = set(scopus["doi"].values)
-print("pmonly", len(pubset - scopusset) )
-print("scopus only", len( scopusset - pubset) )
-print("pmInter	scopus", len(pubset.intersection(scopusset)))
-'''
-
-
-'''
-dois.reset_index(drop = True, inplace = True) # re index
-print("dois no duplicates", len(dois))
-print(dois.head())
-dois.to_csv("./data/valid_dois.csv", index = False, encoding = 'utf8')
-
-'''

@@ -37,7 +37,7 @@ def req_to_json(url):
 
 def get_hal_data(doi, halId):
 	""" Récupérer les métadonnées de HAL.
-	Si le DOI est présent dans unpaywall les métadonnées de HAL communes seront écrasées """
+	Si le DOI est dans unpaywall les métadonnées de HAL communes seront écrasées """
 	
 	if doi and not halId : 
 		query = "doiId_s:"+str(doi)
@@ -279,7 +279,7 @@ fhjson = open('./data/suspiciousIssns.json')
 suspiciousIssns = json.load(fhjson)
 
 out_file_name = "test__" # pour faire des test sans écraser le jeux de données
-df = pd.read_csv("./data/test__alone.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
+df = pd.read_csv(f"d:/dl/apc_lorraine/dois_lorrain.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
 #df = pd.read_csv("./data/uvsq_dois_halId_2015_19.csv", converters={'doi' : str}, na_filter= False, encoding='utf8')
 
 
@@ -287,7 +287,7 @@ df = pd.read_csv("./data/test__alone.csv", converters={'doi' : str}, na_filter= 
 # ______1______ Ajouter les principales métadonnées : HAL, unpaywall et détection des APC
 print("nb of publis to treat", len(df))
 #en 2e arg. le nb de publications à traiter
-df = enrich_df(df, 4) 
+df = enrich_df(df, 1000) 
 
 #un export sécurité avant les traitements
 df.to_csv(f"./data/out/{out_file_name}uvsq_publications_2015_19__avant_alignement.csv", index = False)

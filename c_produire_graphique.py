@@ -13,11 +13,46 @@ Réalisation des 4 graphiques
 """
 #dtype = {"author_count": np.float32, "published_year":"string", "hal_selfArchiving": "boolean"}
 df = pd.read_csv("./data/out/uvsq_publications_2015_19.csv", dtype={"published_year":"string"}, na_filter=False)
-print("nb of publications", len(df.index))
+#print("nb of publications", len(df.index))
 
 #print(df.info())
 #exit()
 
+
+#===========================================================
+##___________________Répartition des publications entre les bases
+#===========================================================
+
+df = pd.read_csv("./data/out/statistiques_sur_les_bases.csv")
+data = df.to_dict("list")
+
+x = np.arange(len(data["name"]))  # the label locations
+width = 0.2
+
+plt.figure(figsize=(17,8))
+fig, ax = plt.subplots()
+plt.style.use('seaborn-pastel')
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+rects1 = ax.bar(x - width, data["all"], width, label='toutes publications', color = "orchid")
+rects2 = ax.bar(x , data["doi"], width, label='publications avec DOI',color = "gold")
+rects3 = ax.bar(x + width, data["no_doi"], width, label='publications sans DOI', color = "skyblue")
+
+
+# Add some text for labels, title and custom x-axis tick labels, etc.
+plt.yticks([i for i in range(0, 18000, 5000)])
+ax.yaxis.grid(ls='--', alpha=0.4)
+ax.set_ylabel('Nombre de publications')
+ax.set_title("Quantité de publications dans les différentes bases", fontsize=13, fontweight = 'bold', alpha = 0.6, y = 1.05)
+ax.set_xticks(x)
+ax.set_xticklabels([n.capitalize() for n in data["name"]])
+ax.legend()
+plt.legend(loc="upper center")
+plt.savefig('./img/comparaisons_entre_les_bases.png', dpi=150, bbox_inches='tight', pad_inches=0.05)
+#plt.show()
+
+exit()
 
 """
 #===========================================================
