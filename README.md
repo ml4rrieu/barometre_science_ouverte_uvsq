@@ -1,5 +1,7 @@
 # Baromètre de la science ouverte de l'UVSQ
 
+Le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
+
 * Présentation des résultats sur [uvsq.fr/barometre-science-ouverte](https://www.uvsq.fr/barometre-science-ouverte)
 
 * Télécharger les données [uvsq_publications_2015_19.csv](/data/out/uvsq_publications_2015_19.csv)
@@ -8,12 +10,11 @@
 
 * [Notes sur l'intégration des publications de HAL sans DOI](#intégrer-les-publications-de-hal-sans-doi)
 
-* [Notes sur la détection des frais de publications (APC)](#pister-les-apc)
+* [Notes sur la détection des frais de publications](#pister-les-apc)
 
 * [Reproduire le baromètre sur son établissement](#reproduire-ce-baromètre-pour-son-établissement)
 
 
-<br /><br />
 <br /><br />
 
 <!--repris et adaptaté
@@ -23,11 +24,8 @@
 * [Intégrer les publications de HAL sans DOI](#intégrer-les-publications-de-HAL-sans-DOI) <br/>
 * [Pister les APC](#pister-les-APC) <br/>
 * [Schéma de données](#Schéma-de-données) <br/>
-
-
-
 ### Présentation -->
-le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
+
 
 ### Intégrer les publications de HAL sans DOI
 Afin de minimiser les lacunes, les publications sans DOI venant de HAL ont été intégrées. Cette quantité de publications supplémentaires modifie évidemment les résultats d'accès ouvert, et impacte aussi la méthodogie à plusieurs étapes : dédoublonnage, détection de l'accès ouvert et alignement des rétérentiels.
