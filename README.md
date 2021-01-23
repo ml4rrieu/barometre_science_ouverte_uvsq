@@ -2,7 +2,7 @@
 
 * Présentation des résultats sur [uvsq.fr/barometre-science-ouverte](https://www.uvsq.fr/barometre-science-ouverte)
 
-* Télécharger les données [uvsq_publications_2015_19.csv](blob/main/data/out/uvsq_publications_2015_19.csv)
+* Télécharger les données [uvsq_publications_2015_19.csv](/data/out/uvsq_publications_2015_19.csv)
 
 * [Schéma de données](#schéma-de-données)
 
