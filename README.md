@@ -1,10 +1,10 @@
 # Baromètre de la science ouverte de l'UVSQ
 
-Le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020), dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
+Le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de Lorraine (mars 2020) dont le code a été [partagé sur gitlab]( https://gitlab.com/Cthulhus_Queen/barometre_scienceouverte_universitedelorraine/-/blob/master/barometre_universite_lorraine.ipynb). Deux modifications ont été apportées : la première permet d'intégrer les publications venant de HAL ne possédant pas de DOI,  la seconde apporte des informations sur les frais de publication (Article Processing Charges : APC).
 
 * Présentation des résultats sur [uvsq.fr/barometre-science-ouverte](https://www.uvsq.fr/barometre-science-ouverte)
 
-* [Télécharger les données](/data/out/uvsq_publications_2015_19.csv) voir le [schéma de données](#schéma-de-données)
+* [Télécharger les données](/data/out/uvsq_publications_2015_19.csv) ; voir le [schéma de données](#schéma-de-données)
 
 * [Note sur l'intégration des publications de HAL sans DOI](#intégrer-les-publications-de-hal-sans-doi)
 
