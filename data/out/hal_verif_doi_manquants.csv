@@ -1,30 +1,177 @@
-doi,title,halId
+doi,title_x,halId
 10.1109/isncc.2015.7238585,4G traffic offloading through wireless network based on next generation hotspots (NGH),hal-01665110
+10.1111/sed.12446,"6600 years of earthquake record in the Julian Alps (Lake Bohinj, Slovenia)",hal-02487384
+10.1007/978-3-319-70136-3_10,A Causal Multi-armed Bandit Approach for Domestic Robots' Failure Avoidance,hal-01586460
+10.1007/978-3-319-91545-6_25,A finite-volume tracking scheme for two-phase compressible flow,hal-02171830
+10.1016/j.irbm.2018.10.010,A Framework for Service Robots in Smart Home: An Efficient Solution for Domestic Healthcare,hal-01692491
+10.1090/mcom/3045,"A fully well-balanced, positive and entropy-satisfying godunov-type method for the shallow-water equations",hal-00956799
+10.1090/mcom3045,"A FULLY WELL-BALANCED, POSITIVE AND ENTROPY-SATISFYING GODUNOV-TYPE METHOD FOR THE SHALLOW-WATER EQUATIONS",hal-00956799
+10.4310/cms.2017.v15.n3.a9,A LARGE TIME-STEP AND WELL-BALANCED LAGRANGE-PROJECTION TYPE SCHEME FOR THE SHALLOW WATER EQUATIONS,hal-01297043
+10.1144/sp440.6,"Alluvial and fluvial fans on Saturn's moon Titan reveal processes, materials and regional geology",insu-01274381
 10.1016/j.atmosenv.2015.03.015,Ammonia emissions in tropical biomass burning regions: Comparison between satellite-derived emissions and bottom-up fire inventories,insu-01245346
+10.1109/icsens.2016.7808471,An affordable and easy-to-use interferometer with a dedicated acquisition system,hal-01378073
+10.1175/bams-d-17-0103.1,ANALYSIS OF THE EXCEPTIONALLY WARM DECEMBER 2015 IN FRANCE USING FLOW ANALOGUES,hal-01631444
+10.1137/18m1126692,AN ANTIDIFFUSIVE HLL SCHEME FOR THE ELECTRONIC M-1 MODEL IN THE DIFFUSION LIMIT,hal-01511519
+10.1109/wimob.2015.7348054,An efficient elastic distributed SDN controller for follow-me cloud,hal-01672878
+10.1109/icsens.2016.7808965,An embedded system to control conducting interpenetrating polymer networks actuators,hal-01497898
+10.1016/j.jcp.2017.01.016,A new comment on the computation of non-conservative products using Roe-type path conservative schemes,hal-01424306
+10.1007/978-3-319-22635-4_29,A New Graph Algorithm for the Analysis of Conformational Dynamics of Molecules,hal-01220093
+10.5194/amt-12-749-2019,A new MesosphEO data set of temperature profiles from 35 to 85 km using Rayleigh scattering at limb from GOMOS/ENVISAT daytime observations,insu-01676377
+10.1007/978-3-319-64483-7_12,A New Sharing Paradigm for the Personal Cloud,hal-01675092
 10.1051/epjconf/201611906008,An innovative rotational Raman lidar to measure the temperature profile from the surface to 30 km altitude,insu-01216820
+10.5220/0006931700750083,An ontology-based approach to generate the advanced driver assistance use cases of highway traffic,hal-01835139
 10.1214/19-ejp344,Arbitrary many walkers meet infinitely often in a subballistic random environment,hal-01940015
+10.1007/s11277-015-2636-3,A Risk-Aware Reputation-Based Trust Management in Wireless Sensor Networks,hal-01672725
+10.1109/wd.2017.7918125,ARMA based popularity prediction for caching in Content Delivery Networks,hal-01636975
+10.14778/2777598.2777600,A Scalable Search Engine for Mass Storage Smart Objects,hal-01176462
+10.1007/978-3-030-01325-7_2,A self-stabilizing algorithm for maximal matching in link-register model,hal-01974891
+10.1002/fld.4500,A simple three-wave approximate Riemann solver for the Saint-Venant-Exner equations,hal-01204754
+10.1002/2015jd023467,Assessing the impacts of assimilating IASI and MOPITT CO retrievals using CESM-CAM-chem and DART,insu-01305801
+10.1007/s10666-018-9612-8,Assessing the Sustainability of Optimal Pollution Paths in a World with Inertia,hal-02789451
+10.1214/17-ejp4326,Asymptotic freeness for rectangular random matrices and large deviations for sample covariance matrices with sub-Gaussian tails,hal-01152615
+10.1109/icra.2017.7989497,A versatile conducting interpenetrating polymer network for sensing and actuation,hal-01639749
+10.1109/icsens.2017.8234210,A visible light-based system for automotive relative positioning,hal-01650248
+10.1016/j.egypro.2015.07.866,Benchmarking Numerical Freeze/Thaw Models,hal-01196966
+10.1097/qad.0000000000001467,Budget impact of antiretroviral therapy in a French clinic cohort,hal-01966749
+10.1002/2015jd024226,Characteristics of stratospheric warming events during Northern winter,insu-01183192
+10.3847/2041-8205/817/2/l19,CLOUDLESS ATMOSPHERES for L/T DWARFS and EXTRASOLAR GIANT PLANETS,hal-01256657
+10.1504/ijsnet.2018.092101,Clustering algorithm for wireless sensor networks: The honeybee swarms nest-sites selection process based approach,hal-01672702
+10.1504/ijsnet.2016.10007395,Clustering algorithm for wireless sensor networks: the honeybee swarms nest-sites selection process based approach,hal-01672702
+10.1109/ccnc.2017.7983144,Coalition game for video content clustering in content delivery networks,hal-01636959
 10.1214/18-ejp192,Collisions of several walkers in recurrent random environments,hal-01500123
+10.1016/j.icarus.2018.12.007,Compositional variations of Titan's impact craters indicates active surface erosion,insu-01665848
 10.1016/b978-0-12-802748-6.00019-x,Conclusion,hal-02321621
+10.1214/17-aihp856,Convergence to equilibrium in the free Fokker-Planck equation with a double-well potential,hal-01323783
 10.1016/j.entcs.2018.03.032,Convex Stochastic Bounds and Stochastic Optimisation on Graphs,hal-01638313
+10.1093/mnras/stx040,Cosmochemical implications of CONSERT permittivity characterization of 67P/CG,insu-01385667
 10.5194/acp-17-10969-2017,Cross-polar transport and scavenging of Siberian aerosols containing black carbon during the 2012 ACCESS summer campaign,insu-01567802
 10.5194/acp-17-10969-2017,Cross-polar transport and scavenging of Siberian aerosols containing black carbon during the 2012 ACCESS summer campaign,insu-01564611
+10.1116/1.5097353,"Cu depletion on Cu(In,Ga)Se-2 surfaces investigated by chemical engineering: An x-ray photoelectron spectroscopy approach",hal-02321990
 10.1007/s00382-015-2622-1,Cyclone contribution to the Mediterranean Sea water budget,insu-01207740
-10.14778/3352063.3352091,DISPERS: Securing Highly Distributed Queries on Personal Data Management Systems,hal-02269201
+10.2151/sola.2017-010,Delayed North Atlantic response to solar forcing of the stratospheric polar vortex,insu-01576591
+10.3167/fpcs.2016.340206,"Derrière le massacre d'État: Ancrages politiques, sociaux et territoriaux de la ""démonstration de masse"" du 17 octobre 1961 à Paris",halshs-01386382
+10.1145/3213187.3213197,Designing a parallel OGSSIM through library specificities,hal-01790857
 10.1109/espm2.2018.00005,Design of Data Management for Multi SPMD Workflow Programming Model,hal-02055754
+10.1109/bibe.2018.00063,Detection of H-pylori induced gastric inflammation by diffuse reflectance analysis,hal-01939130
+10.1007/s12560-018-9358-0,"Detection of Human Enteric Viruses in French Polynesian Wastewaters, Environmental Waters and Giant Clams",hal-01988749
+10.1007/s10468-014-9501-z,Determination of the Representations and a Basis for the Yokonuma-Temperley-Lieb Algebra,hal-01678607
+10.5194/cp-11-1751-2015,Did high Neo-Tethys subduction rates contribute to early Cenozoic warming?,hal-01815916
+10.1007/978-3-030-04639-2_22,Diffusion processes as possible mechanisms for CR depletion at SCC crack tip,hal-01631795
+10.1007/978-3-319-67244-1_22,Diffusion processes as possible mechanisms for Cr depletion at SCC Crack Tip,hal-01631795
+10.1126/science.aad0313,Discovery of diffuse aurora on Mars,insu-01218963
+10.14778/3352063.3352091,DISPERS: Securing Highly Distributed Queries on Personal Data Management Systems,hal-02269201
 10.1007/978-3-319-17996-4_33,Distributed Hierarchy of Clusters in the Presence of Topological Changes,hal-01741682
+10.5441/002/edbt.2016.71,Distributed secure search in the personal cloud,hal-01293409
+10.3917/i2d.154.0056,"Données de la recherche : entre discours, réalités et valeur",hal-01452775
+10.1111/bjh.14284,Efficacy of the MEK inhibitor cobimetinib for wild-type BRAF Erdheim-Chester disease,hal-01377866
 10.1038/nclimate3265,Emergent constraints on projections of declining primary production in the tropical oceans,hal-01615688
-10.1039/c7ce00240h,Fast growth of monocrystalline thin films of 2D layered hybrid perovskite,hal-01668288
+10.1002/9781118632321,Extremes and recurrence in dynamical systems,hal-02886423
+10.1093/fampra/cmv068,Factors associated with GPs' knowledge of their patients' socio-economic circumstances: A multilevel analysis,halshs-01226440
 10.1039/c7ce00240h,Fast growth of monocrystalline thin films of 2D layered hybrid perovskite,hal-01556307
+10.1039/c7ce00240h,Fast growth of monocrystalline thin films of 2D layered hybrid perovskite,hal-01668288
+10.1007/s11277-015-2944-7,FDS: Fault Detection Scheme for Wireless Sensor Networks,hal-01672720
+10.1016/j.atmosenv.2018.11.006,"Flaring emissions in Africa: Distribution, evolution and comparison with current inventories",hal-02324156
+10.1109/wd.2018.8361687,GeoMIP: A novel mobility management solution for Internet and VANET communication using geographic partition in mobile IP,hal-01727584
+10.4337/9781785361036,Governing the police by numbers: The French experience,halshs-01432895
+10.5194/bg-15-297-2018,High organic inputs explain shallow and deep SOC storage in a long-term agroforestry system - combining experimental and modeling approaches,hal-01604611
+10.1007/978-3-319-68454-3_67,Hydrogen Trapping by Irradiation-Induced Defects in 316L Stainless Steel,hal-01631788
+10.1007/978-3-030-04639-2_143,Hydrogen trapping by irradiation-induced defects in 316l stainless steel,hal-01631788
+10.1021/acs.jpclett.7b00998,Impact of Reabsorption on the Emission Spectra and Recombination Dynamics of Hybrid Perovskite Single Crystals,hal-01962094
+10.1007/978-3-319-68445-1_88,Inductive Means and Sequences Applied to Online Classification of EEG,hal-01711499
 10.13154/tosc.v2016.i1.114-133,Is AEZ v4.1 Sufficiently Resilient Against Key-Recovery Attacks?,hal-02163304
-10.1088/2053-1583/aa77d4,Low frequency Raman spectroscopy of few-atomic-layer thick hBN crystals,hal-01517214
-10.1140/epjb/e2018-90290-6,Molecules with two electronic energy levels: coupling between the molecules in the solid state via the optical and acoustic phonon branches,hal-01777925
+10.1109/wimob.2015.7348041,Joint scheduling and power control in multi-cell networks for inter-cell interference coordination,hal-01277072
+10.1109/wimob.2016.7763205,"Joint user association, scheduling and power control in multi-cell networks",hal-01464990
+10.1002/ppp.1929,Laboratory and Numerical Simulation of the Evolution of a River's Talik,hal-01521051
+10.3917/rfsp.662.0271,Les logiques professionnelles et politiques du contrôle [Des styles de police différents en France et en Allemagne],halshs-01580536
+10.3917/machr.239.0141,"Les potentialités touristiques, atout stratégique de la redynamisation de l'économie locale en Algérie",hal-02509454
+10.7153/oam-10-55,LINES OF FULL RANK MATRICES IN LARGE SUBSPACES,hal-01691039
+10.1109/wiopt.2015.7151095,Load balancing in heterogeneous networks based on distributed learning in potential games,hal-01144144
+10.1109/globecom38437.2019.9013345,LoRa-MAB: Toward an intelligent resource allocation approach for LoRaWAN,hal-02431672
+10.3917/legi.059.0061,L’union du droit à la protection des données à caractère personnel et du droit à la vie privée,halshs-02448611
+10.3917/legi.059.0061,L’union du droit à la protection des données à caractère personnel et du droit à la vie privée,halshs-02449219
+10.1177/1477370816640819,Making sense of French urban disorders in 2005,halshs-01397159
+10.5220/0006477001070117,Managing distributed queries under personalized anonymity constraints,hal-01682316
+10.1007/978-3-319-43696-8_18,Managing Personal Health Records in an Infrastructure-Weak Environment,hal-01254961
+10.1093/imrn/rnv257,Markov Traces on Affine and Cyclotomic Yokonuma-Hecke Algebras,hal-01690632
+10.1016/j.placenta.2015.01.440,MATERNAL PRECONCEPTIONAL WEIGHT LOSS: IMPACT ON FETOPLACENTAL DEVELOPMENT AND ON EPIGENETIC MACHINERY GENES EXPRESSION,hal-02741183
+10.1002/2015gl063863,MAVEN IUVS observations of the aftermath of the Comet Siding Spring meteor shower on Mars,insu-01645033
+10.1002/chem.201500251,Mechanochromic Luminescence of Copper Iodide Clusters,hal-01137300
+10.1007/978-3-319-75140-5_28,Middle atmosphere variability and model uncertainties as investigated in the framework of the ARISE project,insu-01878715
+10.1007/s00200-017-0326-y,Mirror theory and cryptography,hal-02171944
+10.1016/j.simpat.2014.11.006,Modelling and design of an augmented reality differential drive mobility aid in an enabled environment,hal-01681978
+10.1093/imrn/rnw150,Modular Representations of GL(n) Distinguished by GL(n-1) over a p-Adic Field,hal-01178420
+10.3934/dcdsb.2017202,MOVING BOTTLENECKS FOR THE AW-RASCLE-ZHANG TRAFFIC FLOW MODEL,hal-01347925
+10.1051/m2an/2018011,NUMERICAL ANALYSIS OF THE MIXED FINITE ELEMENT METHOD FOR THE NEUTRON DIFFUSION EIGENPROBLEM WITH HETEROGENEOUS COEFFICIENTS,hal-01566179
+10.1016/b978-0-12-382225-3.00254-1,Observations Platforms: Balloons,hal-01066392
+10.1109/peds44367.2019.8998898,Ohmic contacts study of P+N diodes on (111) and (100) diamond,hal-02324743
+10.1007/s10468-015-9566-3,On Quantized Decomposition Maps for Graded Algebras,hal-00723773
+10.5802/aif.3263,"ON QUANTUM COHOMOLOGY OF GRASSMANNIANS OF ISOTROPIC LINES, UNFOLDINGS OF A(n)-SINGULARITIES, AND LEFSCHETZ EXCEPTIONAL COLLECTIONS",hal-02147382
+10.1051/epjconf/201611905005,"Ozone profiles obtained by DIAL technique at Maido Observatory in La Reunion Island: comparisons with ECC ozone-sondes, ground-based FTIR spectrometer and microwave radiometer measurements.",hal-01766832
+10.1007/978-3-319-57861-3_19,Parameterized Complexity and Approximability of Coverability Problems in Weighted Petri Nets,hal-01459206
+10.1103/physrevb.93.115202,Picosecond dynamics of free and bound excitons in doped diamond,hal-01287753
+10.1017/cbo9781107358249,Polarimetry of stars and planetary systems,insu-01154708
+10.1002/2016jd025358,Poleward transport variability in the Northern Hemisphere during final stratospheric warmings simulated by CESM(WACCM),insu-01663286
+10.4230/lipics.opodis.2016.11,Polynomial self-stabilizing maximum matching algorithm with approximation ratio 2/3,hal-01724291
 10.1109/mdm.2015.19,PPTM: Privacy-aware Participatory Traffic Monitoring Using Mobile Secure Probes,hal-01176493
+10.1136/rmdopen-2015-000180,"Predictive value of autoantibodies from anti-CCP2, anti-MCV and anti-human citrullinated fibrinogen tests, in early rheumatoid arthritis patients with rapid radiographic progression at 1 year: results from the ESPOIR cohort",hal-01559294
+10.1109/igarss.2015.7327038,Processing of the CFOSAT-SWIM data: Algorithm prototyping and simulations,insu-01183441
+10.1016/j.rse.2018.07.027,Quasi-Gaussian probability density function of sea wave slopes from near nadir Ku-band radar observations,insu-02329785
+10.1007/s10955-016-1677-7,Random Walks and Branching Processes in Correlated Gaussian Environment,hal-01341825
+10.1039/c5dt00280j,"Recent developments in alkene hydro-functionalisation promoted by homogeneous catalysts based on earth abundant elements: formation of C-N, C-O and C-P bond",hal-01941227
+10.1007/978-3-319-75140-5_24,Recent dynamic studies on the middle atmosphere at mid-and low-latitudes using rayleigh lidar and other technologies,insu-01876822
+10.1155/2018/3140915,Recent Trends in the Recurrence of North Atlantic Atmospheric Circulation Patterns,hal-01616483
+10.1515/zfrs-2019-0009,Recht in Bewegung,halshs-02423267
+10.5441/002/edbt.2018.82,Reconciling privacy and data sharing in a smart and connected surrounding,hal-01675093
+10.1109/mownet.2017.8045943,Reducing channel load by enhanced contention based forwarding in vehicular networks,hal-01741694
+10.1016/b978-1-78548-189-5.50008-2,Reliability prediction of embedded electronic systems: The FIDES guide,insu-01155286
+10.30757/alea.v13-34,Renewal structure and local time for diffusions in random environment,hal-01152982
+10.1007/s00209-016-1751-5,Representation theory and an isomorphism theorem for the framisation of the Temperley-Lieb algebra,hal-01690662
 10.5194/amt-9-721-2016,Retrieval of near-surface sulfur dioxide (SO2) concentrations at a global scale using IASI satellite observations,insu-01244510
+10.1117/12.2228013,"Retrieval of sea surface temperature and trace gas column averaged from GOSAT, IASI-A, and IASI-B over the Arctic Ocean in summer 2010 and 2013",insu-01304316
+10.1201/9781351231954-19,Riemannian Classification for SSVEP-Based BCI : Offline versus Online Implementations,hal-01710089
 10.1007/s00382-016-3083-x,Scaling precipitation extremes with temperature in the Mediterranean: past climate assessment and projection in anthropogenic scenarios,insu-02339051
+10.1137/17m1140807,SENSITIVITY ANALYSIS AND NUMERICAL DIFFUSION EFFECTS FOR HYPERBOLIC PDE SYSTEMS WITH DISCONTINUOUS SOLUTIONS. THE CASE OF BAROTROPIC EULER EQUATIONS IN LAGRANGIAN COORDINATES,hal-01589337
+10.1007/978-3-319-57394-6_8,Sensitivity Analysis for the Euler Equations in Lagrangian Coordinates,hal-01589307
 10.5194/acp-17-9897-2017,Sensitivity of the tropical stratospheric ozone response to the solar rotational cycle in observations and chemistry-climate model simulations,insu-01663189
+10.5441/002/edbt.2019.14,SEP2P: Secure and efficient P2P personal data processing,hal-01949641
+10.5441/002/edbt.2019.14,SEP2P: Secure and efficient P2P personal data processing,hal-02269216
+10.5441/002/edbt.2019.14,SEP2P: Secure and efficient P2P personal data processing,hal-02269222
+10.17323/1609-4514-2019-19-4-789-806,Serre's Theorem and Measures Corresponding to Abelian Varieties over Finite Fields,hal-02134139
+10.7448/ias.19.1.20095,Sexual risk behaviour among people living with HIV according to the biomedical risk of transmission: Results from the ANRS-VESPA2 survey,hal-01882105
 10.1002/qj.3246,Simple solutions for the summer shallow atmospheric circulation over North Africa,insu-01660456
+10.2514/6.2015-4670,Simulation of the potential of a cubesat designed for accurate plasma measurement in LEO,insu-01224606
+10.1017/9781139060172.015,Solar wind interaction and atmospheric escape,insu-01536193
+10.1016/j.icarus.2017.06.022,SPICAM on Mars Express: A 10 year in-depth survey of the Martian atmosphere,insu-01144512
+10.1016/j.crma.2019.09.009,Stability estimate in the inverse scattering for a single quantum particle in an external short-range potential,hal-01867691
+10.2528/pierc19032203,Statistical distribution of the layered rough surface index (LRSI),insu-02189826
+10.1007/978-3-030-32872-6_21,Stochastic modelling of autonomous vehicles driving scenarios using PEPA,hal-02352089
+10.1080/10439463.2016.1240172,"Studying policing comparatively: obstacles, preliminary results and promises",halshs-01433117
+10.4310/mrl.2016.v23.n3.a7,The affine Yokonuma-Hecke algebra and the pro-p-Iwahori-Hecke algebra,hal-01143597
+10.1007/978-3-319-94809-6_13,The case for personalized anonymization of database query results,hal-01945674
+10.1016/j.anihpc.2016.12.006,The Kato smoothing effect for regularized Schrodinger equations in exterior domains,hal-00683876
+10.1017/9781139060172.007,The martian planetary boundary layer,insu-01536132
+10.1007/978-3-319-44465-9_5,The Maximum of the Local Time of a Diffusion Process in a Drifted Brownian Potential,hal-00022214
+10.1051/0004-6361/201526968,The primordial nucleus of comet 67P/Churyumov-Gerasimenko,insu-01230109
+10.1117/12.2320112,The Venus Emissivity Mapper (VEM) - obtaining global mineralogy of Venus from orbit,insu-01972014
 10.1002/2014jd022406,Three-dimensional distribution of a major desert dust outbreak over East Asia in March 2008 derived from IASI satellite observations,insu-01160653
+10.4230/lipics.opodis.2016.13,Time and space optimal counting in population protocols,hal-01399797
+10.1109/ipdpsw.2018.00189,Towards a TRansparent I/O solution,hal-01743363
+10.1145/2785592.2794403,Towards smart logistics processes: A predictive monitoring and proactive adaptation approach,hal-01586435
 10.1007/978-3-319-27729-5_10,Towards Smart Logistics Process Management,hal-01586438
+10.5194/acpd-15-31925-2015,"Tropospheric Ozone Variability during the East Asian Summer Monsoon as Observed by Satellite (IASI), Aircraft (MOZAIC) and Ground Stations",insu-01305341
+10.5194/acp-16-10489-2016,"Tropospheric ozone variability during the East Asian summer monsoon as observed by satellite (IASI), aircraft (MOZAIC) and ground stations",insu-01305341
+10.1007/978-3-319-26148-5_3,TrustedMR: A Trusted MapReduce System Based on Tamper Resistance Hardware,hal-01185484
 10.1109/trustcom/bigdatase.2019.00058,Trustworthy Distributed Computations on Personal Data Using Trusted Execution Environments,hal-02269200
 10.1109/trustcom/bigdatase.2019.00058,Trustworthy Distributed Computations on Personal Data Using Trusted Execution Environments,hal-02269211
-10.3390/molecules21070885,Using Low Temperature Photoluminescence Spectroscopy to Investigate CH3NH3PbI3 Hybrid Perovskite Degradation,hal-01420969
+10.1007/s10623-018-0496-z,Two notions of differential equivalence on Sboxes,hal-01650010
+10.1002/art.39628,Two Phenotypes Are Identified by Cluster Analysis in Early Inflammatory Back Pain Suggestive of Spondyloarthritis Results From the DESIR Cohort,hal-02041001
+10.1007/978-3-319-89339-6_5,Two simple composition theorems with H-coefficients,hal-02171950
+10.1007/978-3-030-30490-4_54,Unsupervised Anomaly Detection Using Optimal Transport for Predictive Maintenance,hal-02541920
+10.3847/1538-3881/ab552e,Upper Limits for Emissions in the Coma of Comet 67P/Churyumov-Gerasimenko near Perihelion as Measured by Rosetta's Alice Far-UV Spectrograph,insu-02362729
+10.1200/jco.2016.34.4_suppl.553,Validation of the prognostic impact of lymphocyte infiltration (LI) in patients (pts) with stage III colon cancer (CC) treated with adjuvant FOLFOX plus /- cetuximab: A PETACC8 translational study.,hal-01490356
+10.1007/s11222-016-9670-1,Variable selection for model-based clustering using the integrated complete-data likelihood,hal-01108878
+10.1016/j.pss.2017.05.013,VESPA: A community-driven Virtual Observatory in Planetary Science,insu-01391004
+10.1109/itsc.2016.7795952,Visible light phase-shift rangefinder for platooning applications,hal-01378070
+10.1016/j.radmeas.2015.08.009,Volcanic feldspars anomalous fading: Evidence for two different mechanisms,hal-01150945
+10.1016/j.radmeas.2015.05.003,Volcanic feldspars anomalous fading: Evidence for two different mechanisms,hal-01150945
+10.1016/s2055-6640(20)30045-5,What is the effect of self-identified HIV activism in willingness to participate in HIV cure-related clinical trials? Results from the ANRS-APSEC study,hal-02466813

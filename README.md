@@ -1,12 +1,23 @@
 # Baromètre de la science ouverte de l'UVSQ
 
+* Présentation des résultats sur [uvsq.fr/barometre-science-ouverte](https://www.uvsq.fr/barometre-science-ouverte)
 
-![UVSQ EVOL OA](img/evolution_oa.png)
+* Télécharger les données [uvsq_publications_2015_19.csv](blob/main/data/out/uvsq_publications_2015_19.csv)
+
+* [Schéma de données](#schéma-de-données)
+
+* [Notes sur l'intégration des publications de HAL sans DOI](#intégrer-les-publications-de-hal-sans-doi)
+
+* [Notes sur la détection des frais de publications (APC)](#pister-les-apc)
+
+* [Reproduire le baromètre sur son établissement](#reproduire-ce-baromètre-pour-son-établissement)
+
+
 <br /><br />
 <br /><br />
 
 <!--repris et adaptaté
-
+![UVSQ EVOL OA](img/evolution_oa.png)
 <br /><br />
 ### Table des matières
 * [Intégrer les publications de HAL sans DOI](#intégrer-les-publications-de-HAL-sans-DOI) <br/>

@@ -31,7 +31,7 @@ def conforme_df(df, col_name):
 
 	df["doi"] = df["doi"].str.lower() # doi en minuscule
 	df["title_norm"] = df["title"].apply(lambda row:  normalize_txt(row))
-	df.drop(columns=["title"], inplace = True)
+	#df.drop(columns=["title"], inplace = True)
 	return df
 
 def extract_stats_from_base(src_name, df) : 
@@ -110,12 +110,6 @@ print("Apres dedoublonnage DOI et (pour les sans DOI) sur titre , nb publi", len
 # retenir uniquement les publis  avec DOI ou idHAL
 final = clean_doi_title[ (clean_doi_title['doi'].notna()) | (clean_doi_title['halId'].notna()) ].copy()
 
-#ajout des données retenues dans les stats
-stats_buffer.append([
-	"retenu", 
-	len(final), 
-	len(final[ final['doi'].notna()]), 
-	len(final[ final['doi'].isna()]) ])
 
 toprint = {
 "\n\ndoc total apres dedoublonnage" : len(clean_doi_title),
@@ -132,16 +126,57 @@ toprint = {
 
 
 # Extraire des statistiques pour comarer les sources
+#ajout des données retenues dans les stats
+stats_buffer.append([
+	"retenu", 
+	len(final), 
+	len(final[ final['doi'].notna()]), 
+	len(final[ final['doi'].isna()]) ])
+
 stat_table = pd.DataFrame(stats_buffer, columns=['name', 'all', 'doi', 'no_doi'])
 stat_table.to_csv("./data/out/statistiques_sur_les_bases.csv", index = False)
 
 #extraire le jeu de données final
-final.drop(["title_norm"], axis = 1, inplace = True)
+final.drop(columns=["title", "title_norm"], inplace = True)
 final.to_csv("./data/uvsq_dois_halId_2015_19.csv", index = False, encoding = 'utf8')
 
 
+#______________OPTIONNEL :  extraire des tables pour enrichir et nettoyer HAL
 
-#______________VENN DIAGRAMM sur les bases
+# __a Identifier les documents HAL sans DOI et dont le titre correspond à un document avec DOI 
+doionly = rawdf[(
+	 rawdf['doi'].notna() & rawdf['halId'].isna() )].copy()
+doionly['doi'] = doionly['doi'].str.lower()
+doionly.drop_duplicates('doi', inplace = True)
+del doionly['halId']
+
+halonly = rawdf[(
+	rawdf['doi'].isna() & rawdf['halId'].notna()) ].copy()
+del halonly['doi']
+
+hal_verify_doi = pd.merge(doionly, halonly, on='title_norm')
+hal_verify_doi.sort_values("title_norm", inplace = True)
+hal_verify_doi.drop( columns=["title_y", "title_norm"], inplace = True)
+hal_verify_doi.to_csv("./data/out/hal_verif_doi_manquants.csv", index= False, encoding = 'utf8')
+
+
+# __b identifier les doublons de titre sur les notices HAL sans DOI
+halonly = rawdf[(
+	rawdf['doi'].isna() & rawdf['halId'].notna() )].copy()
+# identification des doublons de titre
+halonly['duplicated'] = halonly.duplicated('title_norm', keep = False)
+halonly_doubl = halonly[ halonly['duplicated']].copy()
+halonly_doubl.sort_values("title", inplace = True)
+halonly_doubl.drop(["doi", "title_norm", "duplicated"], axis = 1, inplace = True)
+
+halonly_doubl.to_csv("./data/out/hal_verif_doublons_titres.csv", index= False, encoding = 'utf8')
+
+
+#______________Optionnel  :  venn diagram sur les bases
+from matplotlib_venn import venn2, venn2_circles, venn2_unweighted
+from matplotlib_venn import venn3, venn3_circles
+from matplotlib import pyplot as plt
+
 def deduce_set_from_df(df) :
 	"""dans un set mettre les dois et, pour les publis sans dois, les titres normés""" 
 	publis = df["doi"].tolist()
@@ -159,10 +194,6 @@ venn_data = {
 }
 
 
-from matplotlib_venn import venn2, venn2_circles, venn2_unweighted
-from matplotlib_venn import venn3, venn3_circles
-from matplotlib import pyplot as plt
-
 plt.figure(figsize=(14,8))
 
 v = venn3(subsets = 
@@ -175,67 +206,9 @@ v = venn3(subsets =
 for label in v.set_labels : 
 	label.set_fontsize(13)
 	label.set_fontweight("bold")
-#[label.set_fontsize(13) for label in v.set_labels]
  
 plt.title("Recouvrement entre les 3 principales bases", fontsize=16, fontweight = 'bold', alpha = 0.6)
 plt.savefig('./img/recouvrement_entre_bases.png', dpi=130, bbox_inches='tight', pad_inches=0.1)
-
-exit()
-
-#print("pmonly", len(pubmedset - scopusset) )
-#print("scopus only", len( scopusset - pubmedset) )
-#print("pmInter	scopus", len(pubmedset.intersection(scopusset)))
-
-
-"""
-venn_data = {
-"HAL" : set(hal["doi"].values),
-"Scopus" : set(scopus["doi"].values),
-"Wos" : set(wos["doi"].values),
-"Pubmed" : set(pubmed["doi"].values),
-"Lens" : set(lens["doi"].values)
-}
-
-import matplotlib
-from matplotlib import pyplot as plt
-import venn
-from venn import venn
-
-"""
-
-#___X___CODE OPTIONNEL POUR ENRICHIR et NETTOYER HAL
-
-# __a Identifier les documents HAL sans DOI et dont le titre correspond à un document avec DOI 
-doionly = rawdf[(
-	 rawdf['doi'].notna() & rawdf['halId'].isna() )].copy()
-doionly['doi'] = doionly['doi'].str.lower()
-doionly.drop_duplicates('doi', inplace = True)
-del doionly['halId']
-
-halonly = rawdf[(
-	rawdf['doi'].isna() & rawdf['halId'].notna()) ].copy()
-del halonly['doi']
-
-hal_verify_doi = pd.merge(doionly, halonly, on='title_norm')
-hal_verify_doi.sort_values("title_x", inplace = True)
-hal_verify_doi.drop( ["title_y", "title_norm"], axis = 1, inplace = True)
-hal_verify_doi.to_csv("./data/out/hal_verif_doi_manquants.csv", index= False, encoding = 'utf8')
-
-
-# __b identifier les doublons de titre sur les notices HAL sans DOI
-halonly = rawdf[(
-	rawdf['doi'].isna() & rawdf['halId'].notna() )].copy()
-# identification des doublons de titre
-halonly['duplicated'] = halonly.duplicated('title_norm', keep = False)
-halonly_doubl = halonly[ halonly['duplicated']].copy()
-halonly_doubl.sort_values("title", inplace = True)
-halonly_doubl.drop(["title_norm", "duplicated"], axis = 1, inplace = True)
-
-halonly_doubl.to_csv("./data/out/hal_verif_doublons_titres.csv", index= False, encoding = 'utf8')
-
-
-
-
 
 
 
