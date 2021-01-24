@@ -110,7 +110,7 @@ Quatre niveaux d'information sur les APC ont été définis, avec l'algorithme s
 | is_paratext        | Is the item an ancillary part of a journal (column disappear if everything is False )         | unpaywall                |
 | suspicious_journal | Is the journal in "predatory" list                                                            | [Stop Predatory Journals](https://github.com/stop-predatory-journals/stop-predatory-journals.github.io)|
 | hal_submittedDate  | When the publication has been submitted in HAL                                                | hal                      |
-| hal_location       | Where OA is founded (file, arxiv, pubmedcentral)                                              | hal                      |
+| hal_location       | Where OA is founded (file, arxiv, pubmedcentral), notice if not OA                            | hal                      |
 | hal_licence        | Licence in HAL deposit                                                                        | hal                      |
 | hal_serlArchiving  | Curiosity : is the deposit made by the author                                                 | hal                      |
 | hal_docType        | Type of document                                                                              | hal                      |
