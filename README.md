@@ -10,7 +10,7 @@ Le Baromètre de la science ouverte de l'UVSQ reprend celui de l'université de 
 
 * [Note sur la détection des frais de publications](#pister-les-apc)
 
-* [Reproduire le baromètre sur son établissement](#reproduire-ce-baromètre-pour-son-établissement)
+* [Reproduire ce baromètre](#reproduire-ce-baromètre)
 
 
 <br /><br />
@@ -75,7 +75,7 @@ Quatre niveaux d'information sur les APC ont été définis, avec l'algorithme s
 				+ oui, retourner `apc_journals_in_doaj`, le prix et la devise
 <br />
 
-### Reproduire ce baromètre pour son établissement
+### Reproduire ce baromètre
 
 0. Installer Python et les libraries signalées dans le fichier `requirement.txt`
 1. Télécharger l'archive au format .zip
