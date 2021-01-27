@@ -58,7 +58,7 @@ Deux dictionnaires ont été réalisés afin d'aligner (i) les types de document
 <br />
 
 ### Pister les APC
-Le but est de savoir si une publication a nécessité des frais de publication (Article Processing Charges : APC). En considérant les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles exonérations (*waivers*) il reste difficile de savoir si des APC ont été payés. L'algorithme réalisé relève donc d'une estimation de la présence ou non d'APC. En décembre 2020 il s'est révélé efficace à plus de 85 %. Enfin, le pistage d'APC se fait au niveau de de l'article, et non des affiliations : l'algorithme reste indifférent à l'établissement ayant payé les APC. 
+Le but est de savoir si une publication a nécessité des frais de publication (Article Processing Charges : APC). En considérant les "accords transformants" (publish & read), les changements possibles de modèle économique des revues, et enfin les éventuelles exonérations (*waivers*) il reste difficile de savoir si des APC ont été payés. L'algorithme réalisé propose donc une estimation de la présence ou non d'APC. En décembre 2020 il s'est révélé efficace à plus de 85 %. Enfin, le pistage d'APC se fait au niveau de de l'article, et non des affiliations : l'algorithme reste indifférent à l'établissement ayant payé les APC. 
 
  Quatre étapes permettent de détecter la présence d'APC, réalisées par l'algorithme suivant :
 
