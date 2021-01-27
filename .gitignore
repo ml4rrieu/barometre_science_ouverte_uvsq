@@ -30,3 +30,10 @@ temp.py
 img/venn_compare/venn_diagr_toutes_bases.png
 img/venn_compare/venn_diagr_dedoubl_titre.png
 test.csv
+old/verif_apc_lorraine/code.py
+old/verif_apc_lorraine/Data_raw_2016_apc_lorraine_2016.csv
+old/verif_apc_lorraine/Data_raw_2017_apc_lorraine_2017.csv
+old/verif_apc_lorraine/Data_raw_2018_apc_lorraine_2018.csv
+old/verif_apc_lorraine/dois.txt
+old/verif_apc_lorraine/dois_lorrain.csv
+old/verif_apc_lorraine/test__apc_dois_lorrain.csv
