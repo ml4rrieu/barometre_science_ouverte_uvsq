@@ -8,9 +8,139 @@ Réalisation des graphiques
   2018 : type d'accès ouvert par éditeurs
   2018 : type d'accès ouvert par discipline
   Evolution taux open access par an et type oa
+  evol types d'accès ouvert green to diamond
     
 
 """
+
+
+#===========================================================
+##___________________evol types d'accès ouvert green to diamond
+#===========================================================
+df = pd.read_csv("./data/out/uvsq_publications_2015_19.csv", dtype={"published_year":"string"}, na_filter = False, low_memory=False)
+df = df.loc[ df["published_year"].isin(["2015.0", "2016.0", "2017.0", "2018.0", "2019.0"]), :]
+print("doc a tratier", len(df))
+print("doc en oa", len(df[ df["is_oa"]]))
+
+
+# ____0____ récupérer les données
+# repo only = repo and not suspicious
+def deduce_green(row) : 
+  if row["oa_type"] == "repository" and row["suspicious_journal"] != "True" :
+    return True
+  else : False
+
+df["green"] = df.apply(lambda row : deduce_green(row), axis = 1)
+df["suspicious"] = df.suspicious_journal == "True"
+
+### deduce bronze (at publisher but without licence and not suspicious)
+def deduce_bronze(row) : 
+  if row["oa_status"] == "bronze" and row["suspicious_journal"] != "True" : 
+    return True
+  else : False
+df["bronze"] = df.apply(lambda row : deduce_bronze(row), axis = 1)
+
+### deduce hybrid
+def deduce_hybrid(row) : 
+  if row["oa_status"] == "hybrid" and row["suspicious_journal"] != "True" : 
+    return True
+  else : False
+df["hybrid"] = df.apply(lambda row : deduce_hybrid(row), axis = 1)
+
+### deduce gold
+def deduce_gold(row) : 
+  if row["oa_status"] == "gold" and row["suspicious_journal"] != "True" and row["apc_tracking"] != "" : 
+    return True
+  else : False
+df["gold"] = df.apply(lambda row : deduce_gold(row), axis = 1)
+
+### deduce diamond
+def deduce_diamond(row) : 
+  if row["oa_status"] == "gold" and row["suspicious_journal"] != "True" and row["apc_tracking"] == "" : 
+    return True
+  else : False
+df["diamond"] = df.apply(lambda row : deduce_diamond(row), axis = 1)
+
+# set dtype bools for new columns
+df = df.astype({'green': 'bool', 'bronze': 'bool', 'hybrid':'bool', 'gold' : 'bool', 'diamond':'bool'})
+
+dfoatype = pd.DataFrame(df.groupby(["published_year"])
+  [["green", "suspicious", "bronze", "hybrid", "gold", "diamond"]].agg(
+    ["count", np.mean])).reset_index()
+
+dfoatype.columns= ["published_year", "nb1", "green", "nb2", "suspicious", "nb3", "bronze", "nb4", "hybrid", "nb5", "gold", "nb6", "diamond"]
+
+
+#ajout du nb de publications pour l'abscisse
+dfoatype["year_label"] = dfoatype.apply(
+  lambda x: "{}\n({} publications)".format(x.published_year[:x.published_year.index(".")]
+  , int(x.nb1)), axis = 1)
+dfoatype = dfoatype.sort_values(by = "published_year", ascending = True)
+
+
+# ____1____ passer les données dans le modele de representation graphique
+
+fig, (ax) = plt.subplots(figsize=(12, 7), dpi=100, facecolor='w', edgecolor='k')
+
+ax.bar(dfoatype.year_label, dfoatype.green, label = "Archive uniquement", color ="#665191" )
+
+ax.bar(dfoatype.year_label, dfoatype.suspicious, bottom = dfoatype.green.tolist(), label = "Éditeur avec journal suspect" , color ="#7E7A7A" )
+
+ax.bar(dfoatype.year_label, dfoatype.bronze, bottom = [sum(x) for x in zip(dfoatype.green.tolist(),dfoatype.suspicious.tolist())], 
+  label = "Éditeur sans licence ouverte (bronze)", color = "#a05195" )
+
+ax.bar(dfoatype.year_label, dfoatype.hybrid, bottom = [sum(x) for x in zip(dfoatype.green.tolist(),dfoatype.suspicious.tolist(), dfoatype.bronze.tolist())], 
+  label = "Éditeur avec journal sur abonnement (hybrid)", color = "#d45287" )
+
+ax.bar(dfoatype.year_label, dfoatype.gold, bottom = 
+  [sum(x) for x in zip(dfoatype.green.tolist(),dfoatype.suspicious.tolist(), dfoatype.bronze.tolist(), dfoatype.hybrid.tolist() )], 
+  label = "Éditeur avec frais de publications (gold)", color = "#ffa701" )
+
+ax.bar(dfoatype.year_label, dfoatype.diamond, bottom = 
+  [sum(x) for x in zip(dfoatype.green.tolist(),dfoatype.suspicious.tolist(), dfoatype.bronze.tolist(), dfoatype.hybrid.tolist(),dfoatype.gold.tolist() )], 
+  label = "Éditeur sans frais de publications (diamond)", color = "#FFDE50" )
+
+
+# ____2____ configurer l'affichage
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['left'].set_visible(False)
+# tracer les grilles 
+ax.yaxis.grid(ls='--', alpha=0.2)
+# preciser legend pour Y
+ax.set_ylim([0,.8])
+ax.set_yticklabels( [f"{int(round(x*100))} %" for x in ax.get_yticks()], fontsize = 10)
+# retirer l'origine sur Y
+yticks = ax.yaxis.get_major_ticks()
+yticks[0].label1.set_visible(False)
+# légende : reordonner les éléments
+handles, labels = ax.get_legend_handles_labels()
+order = [5, 4, 3, 2, 1, 0]
+ax.legend([handles[idx] for idx in order], [labels[idx] for idx in order], 
+  fontsize = 11, loc="upper center", framealpha =1, frameon = False, borderaxespad =-1)
+
+## boucle pour ajouter les taux, difficulté : il faut prendre en compte les taux précédents
+colname = ["green", "bronze", "hybrid", "gold", "diamond"]
+for col in  colname : 
+  for year_ix in range(len(dfoatype.year_label)) : 
+
+    ypos_bottom = 0 #if col =="green" else dfoatype["green"][year_ix]
+    
+    for col_before_ix in range(colname.index(col)) :
+      col_before = colname[col_before_ix]
+      ypos_bottom += dfoatype[col_before][year_ix]
+
+    ax.annotate( f"{int(round( dfoatype[col][year_ix] * 100 ))}%",
+      xy = (year_ix, ypos_bottom + dfoatype[col][year_ix] * 0.40), 
+      xytext= (0,0), 
+      size = 8, 
+      textcoords="offset points",
+      ha='center', va='bottom', color = "black")
+
+plt.title("Évolution des types d'accès ouvert", fontsize = 18, x = 0.5, y = 1.05, alpha = 0.8)
+plt.savefig('./img/evolution_type_ao.png', dpi=100, bbox_inches='tight') #, pad_inches=0.1)
+exit()
+
 
 
 
